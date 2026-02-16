@@ -8,3 +8,4 @@
 4. npm install mongoosh
 5. npm install cors
 6. nodemon app.js
+7. control c för att stänga ner
