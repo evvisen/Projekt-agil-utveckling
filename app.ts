@@ -2,7 +2,7 @@ import express from "express";
 const app = express();
 const port = 3000;
 import cors from "cors";
-import { connectDB } from "./config/sql.ts";
+import { connectDB } from "./config/sql.js";
 // Parse JSON bodies
 app.use(express.json());
 
