@@ -1,7 +1,8 @@
-import express from "express"
+import express from "express";
 const app = express();
 const port = 3000;
-import cors from "cors"
+import cors from "cors";
+import { connectDB } from "./config/sql.ts";
 // Parse JSON bodies
 app.use(express.json());
 
@@ -13,5 +14,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cors());
 
-import databaseSql from "./config/sql.ts"
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+async function startServer() {
+  const db = await connectDB();
+  app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+}
+
+startServer();

@@ -1,17 +1,18 @@
 import mysql from 'mysql2/promise'
 
-export const connection = await mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "vuxenpoäng",
-});
+export async function connectDB() {
+  try {
+    const connection = await mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "password",
+      database: "vuxenpoäng",
+    });
 
-connection.connect((err: string) => {
-  if (err) {
+    console.log("Ansluten till MySQL-databasen!");
+    return connection;
+  } catch (err) {
     console.error("Fel vid anslutning till MySQL:", err);
-    return;
+    throw err;
   }
-  console.log("Ansluten till MySQL-databasen!");
-});
-
+}
