@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 import cors from "cors";
 import { connectDB } from "./config/sql.js";
-import { registerUser } from "./services/authService.js";
+import { registerUser } from "./controllers/authController.js";
 // Parse JSON bodies
 app.use(express.json());
 
