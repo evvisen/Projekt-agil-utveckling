@@ -1,7 +1,7 @@
-const express = require("express");
+import express from "express"
 const app = express();
 const port = 3000;
-const cors = require("cors");
+import cors from "cors"
 // Parse JSON bodies
 app.use(express.json());
 
@@ -13,5 +13,5 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cors());
 
-const databaseSql = require("./config/sql");
+import databaseSql from "./config/sql.ts"
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
