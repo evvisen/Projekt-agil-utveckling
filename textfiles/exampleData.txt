@@ -1,0 +1,4 @@
+Här kan vi lägga in ex på JSON-data för att testa i insomnia osv
+
+ex. visa users i insomnia
+http://localhost:3000/users
