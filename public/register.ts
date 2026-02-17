@@ -20,10 +20,12 @@ window.addEventListener("DOMContentLoaded", () => {
   const setMessage = (text: string, type: "ok" | "error" | "info" = "info") => {
     msg.textContent = text;
     msg.classList.remove("is-ok", "is-error", "is-info");
-    msg.classList.add(type === "ok" ? "is-ok" : type === "error" ? "is-error" : "is-info");
+    msg.classList.add(
+      type === "ok" ? "is-ok" : type === "error" ? "is-error" : "is-info",
+    );
   };
 
- form.addEventListener("submit", async (e: SubmitEvent) => {
+  form.addEventListener("submit", async (e: SubmitEvent) => {
     e.preventDefault();
 
     const u = username.value.trim();
@@ -64,7 +66,10 @@ window.addEventListener("DOMContentLoaded", () => {
       const success = (data as any).success ?? (data as any).sucess ?? false;
 
       if (!res.ok || !success) {
-        setMessage((data as any).message || "Något gick fel vid registrering.", "error");
+        setMessage(
+          (data as any).message || "Något gick fel vid registrering.",
+          "error",
+        );
         return;
       }
 
@@ -75,7 +80,6 @@ window.addEventListener("DOMContentLoaded", () => {
       }
 
       form.reset();
-
     } catch (err) {
       console.error(err);
       setMessage("Kunde inte kontakta servern. Är backend igång?", "error");
@@ -83,7 +87,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   const goToLogin = document.getElementById("goToLogin");
-goToLogin?.addEventListener("click", (e: MouseEvent) => {
+  goToLogin?.addEventListener("click", (e: MouseEvent) => {
     e.preventDefault();
     window.location.href = "/login.html";
   });
