@@ -5,6 +5,8 @@
   "main": "app.ts",
   "scripts": {
     "dev": "tsx --watch app.ts",
+    "build:dom": "tsc -p tsconfig.dom.json",
+    "watch:dom": "tsc -p tsconfig.dom.json -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
