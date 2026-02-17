@@ -1,13 +1,14 @@
 import { connectDB } from "../config/sql.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import type { RowDataPacket } from "mysql2";
+import type { Request, Response } from "express";
+import type { RowDataPacket, ResultSetHeader} from "mysql2";
 
 const SALT_ROUNDS = 10;
 const JWT_KEY = "secretkey";
 
 
-// interface
+// interface hur användare ser ut i databasen
 
 interface IUser extends RowDataPacket {
     user_id: number;
@@ -17,11 +18,26 @@ interface IUser extends RowDataPacket {
     current_level: number;
 };
 
-
+//register user
 export async function registerUser(
-    username: string,
-    password: string
+    req: Request, res: Response
 ) {
+
+  const body = req.body as {username: string; password: string};
+
+  const username= body.username;
+  const password= body.password;
+
+  if (!username || !password) {
+
+    return res.status(400).json({
+
+        success: false,
+        message: "användarnamn och lösenord krävs"
+
+    });
+
+}
 
     try {
         const db = await connectDB();
@@ -69,7 +85,22 @@ export async function registerUser(
 
 
 //logga in funktion
-export async function loginUser(username: string, password: string) {
+export async function loginUser(req: Request, res: Response) {
+  const body = req.body as {username: string; password: string};
+
+  const username= body.username;
+  const password=body.password;
+
+  if (!username || !password) {
+
+    return res.status(400).json({
+
+      success: false,
+      message: "Username och password krävs"
+
+    });
+
+  }
     try {
         const db = await connectDB();
 
