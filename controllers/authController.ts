@@ -75,11 +75,11 @@ export async function registerUser(
             { expiresIn: "1h" }
         );
 
-        return { sucess: true, message: "Användare skapad!", token };
+        return res.status(201).json({ success: true, message: "Användare skapad!", token });
 
     } catch (err: any) {
         console.error("fel vid registrering:", err);
-        return { success: false, message: "Något gick fel vid registrering" };
+        return res.status(500).json({ success: false, message: "Något gick fel vid registrering" });
     }
 };
 
@@ -130,9 +130,9 @@ export async function loginUser(req: Request, res: Response) {
             { expiresIn: "1h" }
         );
 
-        return { success: true, message: "Inloggning lyckades!", token };
+        return res.status(201).json({ success: true, message: "Inloggning lyckades!", token });
     } catch (err: any) {
         console.error("Fel vid login:", err);
-        return { success: false, message: "Något gick fel vid inloggning" };
+        return res.status(500).json({ success: false, message: "Något gick fel vid inloggning" });
     }
 }
