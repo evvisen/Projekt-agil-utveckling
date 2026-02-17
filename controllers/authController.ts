@@ -51,7 +51,7 @@ export async function registerUser(
 
         );
         if (existing.length > 0) {
-            return { sucess: false, message: "Användarnamnet är redan taget" };
+            return res.status(400).json({ sucess: false, message: "Användarnamnet är redan taget" });
         }
 
         //hasha lösenord
@@ -111,7 +111,7 @@ export async function loginUser(req: Request, res: Response) {
         );
 
         if (users.length === 0) {
-            return { success: false, message: "Fel användarnamn eller lösenord" };
+            return res.status(400).json({ success: false, message: "Fel användarnamn eller lösenord" });
         }
 
         const user = users[0]!;
@@ -120,7 +120,7 @@ export async function loginUser(req: Request, res: Response) {
         const isPasswordValid = await bcrypt.compare(password, user.password_hash);
 
         if (!isPasswordValid) {
-            return { success: false, message: "Fel användarnamn eller lösenord" };
+            return res.status(400).json({ success: false, message: "Fel användarnamn eller lösenord" });
         }
 
         // skapa JWT-token
