@@ -2,7 +2,7 @@ import { connectDB } from "../config/sql.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import type { Request, Response } from "express";
-import type { RowDataPacket, ResultSetHeader} from "mysql2";
+import type { RowDataPacket, ResultSetHeader } from "mysql2";
 
 const SALT_ROUNDS = 10;
 const JWT_KEY = "secretkey";
@@ -23,21 +23,21 @@ export async function registerUser(
     req: Request, res: Response
 ) {
 
-  const body = req.body as {username: string; password: string};
+    const body = req.body as { username: string; password: string };
 
-  const username= body.username;
-  const password= body.password;
+    const username = body.username;
+    const password = body.password;
 
-  if (!username || !password) {
+    if (!username || !password) {
 
-    return res.status(400).json({
+        return res.status(400).json({
 
-        success: false,
-        message: "användarnamn och lösenord krävs"
+            success: false,
+            message: "användarnamn och lösenord krävs"
 
-    });
+        });
 
-}
+    }
 
     try {
         const db = await connectDB();
@@ -86,21 +86,21 @@ export async function registerUser(
 
 //logga in funktion
 export async function loginUser(req: Request, res: Response) {
-  const body = req.body as {username: string; password: string};
+    const body = req.body as { username: string; password: string };
 
-  const username= body.username;
-  const password=body.password;
+    const username = body.username;
+    const password = body.password;
 
-  if (!username || !password) {
+    if (!username || !password) {
 
-    return res.status(400).json({
+        return res.status(400).json({
 
-      success: false,
-      message: "Username och password krävs"
+            success: false,
+            message: "Username och password krävs"
 
-    });
+        });
 
-  }
+    }
     try {
         const db = await connectDB();
 

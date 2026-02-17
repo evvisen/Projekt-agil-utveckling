@@ -10,7 +10,7 @@
     "target": "esnext",
     // For nodejs:
     "lib": [
-      "esnext"
+      "esnext",
     ],
     "types": [
       "node"
