@@ -1,7 +1,7 @@
 import { connectDB } from "../config/sql.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import type { RowDataPacket, ResultSetHeader} from "mysql2";
 
 const SALT_ROUNDS = 10;
