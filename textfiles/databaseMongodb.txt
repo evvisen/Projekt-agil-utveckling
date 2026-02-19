@@ -1,0 +1,65 @@
+use quiz
+
+db.ekonomiquiz.insertMany(
+    {
+        namn: "Grundläggande privatekonomi",
+        nivå: 1,
+        frågor: [
+            "1. Vad är ett sparkonto?",
+            "2. Vad innebär effektiv ränta?",
+            "3. Vad betyder det att diversifiera sitt sparande?"
+            ],
+        svarsalternativ: {
+            fråga1: {A: false, B: true, C:false, D:false},
+            fråga2: {A: false, B: true, C:false, D:false},
+            fråga3: {A: false, B: false, C:true, D:false}
+        },
+        namn: "Lån, budget och investeringar",
+        nivå: 2,
+        frågor: [
+            "1. Vad är en budget?",
+            "2. Vad händer om du bara betalar minimibeloppet på ett kreditkort?",
+            "3. Vad är skillnaden mellan aktier och fonder?"
+            ],
+        svarsalternativ: {
+            fråga1: {A: false, B: true, C:false, D:false},
+            fråga2: {A: false, B: false, C:true, D:false},
+            fråga3: {A: false, B: true, C:false, D:false}
+        },
+
+
+
+    }
+)
+
+db.juridikquiz.insertMany(
+    {
+        namn: "Grundläggande juridik",
+        nivå: 1,
+        frågor: [
+            "1. Vad är en lag?",
+            "2. Vad krävs för att ett avtal ska vara giltigt enligt avtalsrätten?",
+            "3. Vad innebär principalansvar?"
+            ],
+        svarsalternativ: {
+            fråga1: {A: false, B: true, C:false, D:false},
+            fråga2: {A: false, B: false, C:true, D:false},
+            fråga3: {A: false, B: true, C:false, D:false}
+        },
+        namn: "Straffrätt och civilrätt",
+        nivå: 2,
+        frågor: [
+            "1. Vad är skillnaden mellan civilrätt och straffrätt?",
+            "2. Vad menas med uppsåt i straffrätten?",
+            "3. Vad innebär preskription?"
+            ],
+        svarsalternativ: {
+            fråga1: {A: false, B: true, C:false, D:false},
+            fråga2: {A: false, B: true, C:false, D:false},
+            fråga3: {A: false, B: false, C:true, D:false}
+        },
+
+
+
+    }
+)
