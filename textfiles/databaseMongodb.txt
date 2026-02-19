@@ -2,6 +2,7 @@ use quiz
 
 db.ekonomiquiz.insertMany(
     {
+        mongo_quiz_id: "ekonomi_lvl_1",
         namn: "Grundläggande privatekonomi",
         nivå: 1,
         frågor: [
@@ -14,6 +15,7 @@ db.ekonomiquiz.insertMany(
             fråga2: {A: false, B: true, C:false, D:false},
             fråga3: {A: false, B: false, C:true, D:false}
         },
+        mongo_quiz_id: "ekonomi_lvl_2",
         namn: "Lån, budget och investeringar",
         nivå: 2,
         frågor: [
@@ -34,6 +36,7 @@ db.ekonomiquiz.insertMany(
 
 db.juridikquiz.insertMany(
     {
+        mongo_quiz_id: "juridik_lvl_1",
         namn: "Grundläggande juridik",
         nivå: 1,
         frågor: [
@@ -46,6 +49,7 @@ db.juridikquiz.insertMany(
             fråga2: {A: false, B: false, C:true, D:false},
             fråga3: {A: false, B: true, C:false, D:false}
         },
+        mongo_quiz_id: "juridik_lvl_2",
         namn: "Straffrätt och civilrätt",
         nivå: 2,
         frågor: [
