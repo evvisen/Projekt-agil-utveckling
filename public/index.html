@@ -9,29 +9,41 @@
 </head>
 
 <body>
+
   <main class="page">
+
+
+
+
     <section class="card" aria-labelledby="signup-title">
       <header class="card_header">
-        <p class="brand">Vuxenpoäng</p>
+        <!-- <p class="brand">Vuxenpoäng</p> -->
+        <div class="top_logo">
+          <div class="logo_box">
+            <img class="logo_img" src="./css/Group 33565.svg" alt="Vuxenpoäng logo">
+            <span class="logo_text">Vuxenpoäng</span>
+          </div>
+        </div>
 
-        <h1 id="signup-title">Skapa konto</h1>
-        <p>hej</p>
+        <h1 id="signup-title">Logga in på ditt konto</h1>
 
-        <p class="subtitle">Spara din progression och samla Vuxenpoäng.</p>
+        <p class="subtitle">med din registrerade e-postadress</p>
+
+
       </header>
 
       <form id="signupForm" class="form" method="post" action="http://localhost:3000/api/register" novalidate>
         <div class="field">
           <label for="username">Användarnamn</label>
-          <input id="username" name="username" type="text" autocomplete="username" placeholder="Användarnamn"
+          <input id="username" name="username" type="text" autocomplete="username" placeholder="Ange användarnamn"
             minlength="3" maxlength="20" required />
         </div>
 
         <div class="field">
           <label for="password">Lösenord</label>
           <div class="password">
-            <input id="password" name="password" type="password" autocomplete="new-password"
-              placeholder="Minst 8 tecken" minlength="8" maxlength="72" required />
+            <input id="password" name="password" type="password" autocomplete="new-password" placeholder="Ange lösenord"
+              minlength="8" maxlength="72" required />
 
             <button type="button" class="password_toggle" id="togglePassword" aria-label="Visa lösenord">
               Visa
@@ -44,6 +56,20 @@
           <input id="passwordConfirm" name="passwordConfirm" type="password" autocomplete="new-password"
             placeholder="Skriv samma lösenord igen" minlength="8" maxlength="72" required />
         </div>
+
+        <!-- <button class="btn btn-primary" type="submit">Logga in</button>
+
+
+
+        <div class="divider"><span>Eller</span></div>
+
+        <button class="btn btn-secondary" type="button" id="goToRegister">Skapa ett konto</button>
+
+        <a class="forgot_link" href="#" id="forgotPassword">Glömt lösenord?</a>
+
+        <div id="formMessage" class="message" role="status" aria-live="polite"></div> -->
+
+
 
         <button class="btn btn-primary" type="submit">Skapa konto</button>
 
