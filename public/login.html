@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Skapa konto – Vuxenpoäng</title>
+  <title>login konto – Vuxenpoäng</title>
   <link rel="stylesheet" href="./css/index.css" />
 </head>
 
@@ -25,17 +25,17 @@
           </div>
         </div>
 
-        <h1 id="signup-title">Skapa konto</h1>
+        <h1 id="signup-title">Logga in på ditt konto</h1>
 
-        <p class="subtitle">Skriv in din användarnamn</p>
+        <p class="subtitle">med din registrerade användarnamn</p>
 
 
       </header>
 
-      <form id="signupForm" class="form" method="post" action="http://localhost:3000/api/register" novalidate>
+      <form id="signupForm" class="form" method="post" action="http://localhost:3000/api/login" novalidate>
         <div class="field">
           <label for="username">Användarnamn</label>
-          <input id="username" name="username" type="text" autocomplete="username" placeholder="Ange användarnamn"
+          <input id="username" name="username" type="text" autocomplete="username" placeholder="Ange Användarnamn"
             minlength="3" maxlength="20" required />
         </div>
 
@@ -51,21 +51,15 @@
           </div>
         </div>
 
-        <div class="field">
-          <label for="passwordConfirm">Bekräfta lösenord</label>
-          <input id="passwordConfirm" name="passwordConfirm" type="password" autocomplete="new-password"
-            placeholder="Skriv samma lösenord igen" minlength="8" maxlength="72" required />
-        </div>
 
 
 
 
-
-        <button class="btn btn-primary" type="submit">Skapa konto</button>
+        <button class="btn btn-primary" type="submit">Logga in</button>
 
         <p class="small">
-          Har du redan konto?
-          <a href="login.html" class="link" id="goToLogin">Logga in</a>
+          Har du inte konto?
+          <a href="index.html" class="link" id="goToRegister">Skapa konto</a>
         </p>
 
         <div id="formMessage" class="message" role="status" aria-live="polite"></div>
@@ -88,7 +82,7 @@
     });
   </script>
 
-  <script type="module" src="./register.js"></script>
+  <script type="module" src="./login.js"></script>
 </body>
 
 </html>
