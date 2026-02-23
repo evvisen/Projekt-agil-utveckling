@@ -73,9 +73,9 @@
 
     const form = document.getElementById("signupForm")
 
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-
 
       toggleBtn?.addEventListener("click", () => {
         const isHidden = pwd.type === "password";
@@ -88,20 +88,13 @@
       });
 
 
-      window.location.href = "/dashboard.html"
+
+      window.location.href = "dashboard.html"
 
 
     })
 
-    // toggleBtn?.addEventListener("click", () => {
-    //   const isHidden = pwd.type === "password";
-    //   pwd.type = isHidden ? "text" : "password";
-    //   toggleBtn.textContent = isHidden ? "Dölj" : "Visa";
-    //   toggleBtn.setAttribute(
-    //     "aria-label",
-    //     isHidden ? "Dölj lösenord" : "Visa lösenord"
-    //   );
-    // });
+
   </script>
 
   <script type="module" src="./login.js"></script>
