@@ -45,7 +45,7 @@ export async function registerUser(
         //kollar om användaren redan finns i databasen
         const [existing] = await db.execute<IUser[]>(
 
-            "SELECT * FROM Users WHERE username = ?",
+            "SELECT * FROM users WHERE username = ?",
 
             [username]
 
@@ -60,8 +60,8 @@ export async function registerUser(
         //spara nya användaren i databasen
         const [result] = await db.execute(
             `
-      INSERT INTO Users (username, password_hash, current_level)
-      VALUES (?, ?, 1)
+      INSERT INTO users (username, password_hash)
+      VALUES (?, ?)
       `,
             [username, hashedPassword]
         );
@@ -106,7 +106,7 @@ export async function loginUser(req: Request, res: Response) {
 
         // hämta användaren från databasen
         const [users] = await db.execute<IUser[]>(
-            "SELECT * FROM Users WHERE username = ?",
+            "SELECT * FROM users WHERE username = ?",
             [username]
         );
 
