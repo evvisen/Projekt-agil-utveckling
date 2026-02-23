@@ -73,7 +73,7 @@ togglePasswordBtn?.addEventListener("click", () => {
       });
 
       const data = (await res.json()) as Partial<RegisterResponse> & {
-        sucess?: boolean;
+        success?: boolean;
       };
 
       const success = (data as any).success ?? (data as any).sucess ?? false;
@@ -88,23 +88,15 @@ togglePasswordBtn?.addEventListener("click", () => {
 
       setMessage((data as any).message || "Användare skapad!", "ok");
 
-      if ((data as any).token) {
-        localStorage.setItem("token", (data as any).token);
-      }
-      window.location.href= "/login.html";
 
-      form.reset();
+
+
+      window.location.href= "/login.html";
 
     } catch (err) {
       console.error(err);
       setMessage("Kunde inte kontakta servern. Är backend igång?", "error");
     }
-  });
-
-  const goToLogin = document.getElementById("goToLogin");
-  goToLogin?.addEventListener("click", (e: MouseEvent) => {
-    e.preventDefault();
-    window.location.href = "/login.html";
   });
 
 

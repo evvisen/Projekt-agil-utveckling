@@ -19,12 +19,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const loginPassword = getLoginElement<HTMLInputElement>("password");
   const loginMsg = getLoginElement<HTMLDivElement>("formMessage");
 
-  // Länk till register-sidan
-  const goToRegisterBtn = getLoginElement<HTMLAnchorElement>("goToRegister");
-  goToRegisterBtn?.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.location.href = "/index.html"; // register.html
-  });
 
   // Toggle Visa/Dölj lösenord
   const loginTogglePasswordBtn = getLoginElement<HTMLButtonElement>("togglePassword");
