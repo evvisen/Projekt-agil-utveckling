@@ -78,8 +78,10 @@ window.addEventListener("DOMContentLoaded", () => {
       if ((data as any).token) {
         localStorage.setItem("token", (data as any).token);
       }
+      window.location.href= "/login.html";
 
       form.reset();
+
     } catch (err) {
       console.error(err);
       setMessage("Kunde inte kontakta servern. Är backend igång?", "error");
@@ -91,4 +93,6 @@ window.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     window.location.href = "/login.html";
   });
+
+
 });
