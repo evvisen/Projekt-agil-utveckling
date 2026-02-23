@@ -15,35 +15,54 @@ CREATE TABLE modules (
 
 CREATE TABLE module_levels (
     module_level_id INT AUTO_INCREMENT,
-    module_ml_id INT NOT NULL,
+    module_id INT NOT NULL,
     level_number INT NOT NULL,
-    mongo_quiz_id VARCHAR(50) NOT NULL,
-    UNIQUE (module_ml_id, level_number),
+    UNIQUE (module_id, level_number),
     PRIMARY KEY (module_level_id),
-    FOREIGN KEY (module_ml_id) REFERENCES modules(module_id)
+    FOREIGN KEY (module_id) REFERENCES modules(module_id)
 );
 
-CREATE TABLE Users (
+CREATE TABLE users (
     user_id INT NOT NULL AUTO_INCREMENT,
     username VARCHAR(50) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    current_level INT,
-    PRIMARY KEY (user_id),
-    FOREIGN KEY (current_level) REFERENCES module_levels(module_level_id)
+    PRIMARY KEY (user_id)
 );
+
+CREATE TABLE quiz_questions (
+    quiz_questions_id INT NOT NULL AUTO_INCREMENT,
+    module_level_id INT NOT NULL,
+    quiz_question VARCHAR(255) NOT NULL,
+    correct_option VARCHAR(1) NOT NULL,
+    PRIMARY KEY (quiz_questions_id),
+    FOREIGN KEY (module_level_id) REFERENCES module_levels(module_level_id)
+);
+
+CREATE TABLE user_quiz_answer (
+    user_quiz_answer INT NOT NULL AUTO_INCREMENT,
+    quiz_question_id INT NOT NULL,
+    user_id INT NOT NULL,
+    selected_option VARCHAR(1) NOT NULL,
+    is_correct BOOLEAN NOT NULL ,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_quiz_answer),
+    FOREIGN KEY (quiz_question_id) REFERENCES quiz_questions(quiz_questions_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
 
 CREATE TABLE user_module_progress (
     user_module_progress_id INT NOT NULL AUTO_INCREMENT,
-    user_id_UMP INT NOT NULL ,
-    module_level_UMP_id INT NOT NULL,
+    user_id INT NOT NULL ,
+    module_level_id INT NOT NULL,
     status ENUM('locked', 'unlocked', 'completed') DEFAULT 'locked',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     completed_at DATETIME NULL, -- kan vara null tills den är completed
-    UNIQUE (user_id_UMP, module_level_UMP_id), -- så en user inte kan ha fler status per level
+    UNIQUE (user_id, module_level_id), -- så en user inte kan ha fler status per level
     PRIMARY KEY (user_module_progress_id),
-    FOREIGN KEY (user_id_UMP) REFERENCES Users(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (module_level_UMP_id) REFERENCES module_levels(module_level_id)
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (module_level_id) REFERENCES module_levels(module_level_id)
 );
 
 
@@ -56,25 +75,37 @@ VALUES
 ('Juridik', 'Grunder i vardagsjuridik'),
 ('Privatekonomi', 'Pengar, sparande och budget');
 
-INSERT INTO module_levels (module_ml_id, level_number, mongo_quiz_id)
+INSERT INTO module_levels (module_id, level_number)
 VALUES
-(1, 1, 'juridik_lvl1'),
-(1, 2, 'juridik_lvl_2'),
-(2, 1, 'ekonomi_lvl_1');
+(1, 1),
+(1, 2),
+(2, 1),
+(2, 2);
 
-INSERT INTO Users (username,current_level, password_hash)
-VALUES ('användare1',1, 'hashedpassword123');
+INSERT INTO users (username, password_hash)
+VALUES ('användare1', 'hashedpassword123');
 
-INSERT INTO user_module_progress ( user_id_UMP, module_level_UMP_id, status)
+INSERT INTO quiz_questions (module_level_id, quiz_question, correct_option)
+VALUES (1, 'Vad är en lag?', 'B'),
+       (1, 'Vad krävs för att ett avtal ska vara giltigt enligt avtalsrätten?', 'C'),
+       (2, 'Vad är en budget?', 'A');
+
+INSERT INTO user_quiz_answer (quiz_question_id, user_id, selected_option, is_correct)
+VALUES (1,1,'B', true),
+       (2,1,'A', false),
+       (3, 1, 'A', true);
+
+INSERT INTO user_module_progress ( user_id, module_level_id, status)
 VALUES
-(2, 1, 'completed'),
-(2, 2, 'unlocked'),
-(2, 3, 'locked');
+(1, 1, 'completed'),
+(1, 2, 'unlocked'),
+(1, 3, 'unlocked'),
+(1, 4, 'locked');
 
 
 -- SELECT FRÅGOR
 
-SELECT * FROM Users;
+SELECT * FROM users;
 SELECT * FROM modules;
 SELECT * FROM module_levels;
 SELECT * FROM user_module_progress;
@@ -82,44 +113,52 @@ SELECT * FROM user_module_progress;
 -- INNER JOIN
 
 -- Visa användarens hela progress (Dashboard)
-SELECT u.username, m.name AS module, ml.level_number, ml.mongo_quiz_id, ump.status, ump.completed_at
-FROM Users u
-INNER JOIN user_module_progress ump on u.user_id = ump.user_id_UMP
-INNER JOIN module_levels ml on ump.module_level_UMP_id = ml.module_level_id
-INNER JOIN modules m on ml.module_ml_id = m.module_id
-WHERE u.user_id = 2;
+SELECT u.username, m.name AS module, ml.level_number, ml.module_level_id, ump.status
+FROM users u
+INNER JOIN user_module_progress ump on u.user_id = ump.user_id
+INNER JOIN module_levels ml on ump.module_level_id = ml.module_level_id
+INNER JOIN modules m on ml.module_id = m.module_id
+WHERE u.user_id = 1;
 
 -- visa vilka quiz användaren får spela (alla som inte har status "locked"
-SELECT ml.mongo_quiz_id, m.name AS module, ml.level_number
+SELECT ml.module_level_id, m.name AS module, ml.level_number
 FROM user_module_progress ump
-INNER JOIN module_levels ml on ump.module_level_UMP_id = ml.module_level_id
-INNER JOIN modules m on ml.module_ml_id = m.module_id
-WHERE ump.user_id_UMP=2
+INNER JOIN module_levels ml on ump.module_level_id = ml.module_level_id
+INNER JOIN modules m on ml.module_id = m.module_id
+WHERE ump.user_id=1
 AND ump.status IN ('completed','unlocked');
 
 -- visa nästa level användaren ska spela
 SELECT ml.*
 FROM user_module_progress ump
-INNER JOIN module_levels ml on ump.module_level_UMP_id = ml.module_level_id
-WHERE ump.user_id_UMP=2 AND ump.status= 'unlocked'
-ORDER BY ml.level_number
+INNER JOIN module_levels ml on ump.module_level_id = ml.module_level_id
+WHERE ump.user_id=1 AND ump.status= 'unlocked'
+ORDER BY ml.module_id, ml.level_number
 LIMIT 1;
 
 -- Räkna hur många levels användaren klarat
+-- (detta används för att visa ex. brons/silver/guld nivå i frontend)
 SELECT COUNT(*) AS completed_levels
 FROM user_module_progress
-WHERE user_id_UMP=2 AND status= 'completed';
+WHERE user_id=1 AND status= 'completed';
 
+-- gör om level 1 till completed
+UPDATE user_module_progress SET status= 'completed', completed_at= NOW()
+WHERE user_id =1 AND module_level_id=1;
 
 -- unlock nästa level (check)
-SELECT * FROM module_levels WHERE module_ml_id=1 AND level_number=2;
+UPDATE user_module_progress SET status = 'unlocked'
+WHERE user_id = 1 AND module_level_id = 2;
+
+SELECT * FROM module_levels WHERE module_id=1 AND level_number=2;
 
 
 DROP TABLE modules;
 DROP TABLE module_levels;
-DROP TABLE Users;
+DROP TABLE users;
+DROP TABLE quiz_questions;
+DROP TABLE user_quiz_answer;
 DROP TABLE user_module_progress;
 
 
 DROP DATABASE vuxenpoäng;
-
