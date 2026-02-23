@@ -1,94 +1,103 @@
 <!DOCTYPE html>
 <html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skapa konto – Vuxenpoäng</title>
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Skapa konto – Vuxenpoäng</title>
-  <link rel="stylesheet" href="./css/index.css" />
-</head>
-
-<body>
-
-  <main class="page">
-
-
-
-
-    <section class="card" aria-labelledby="signup-title">
-      <header class="card_header">
-
-        <div class="top_logo">
-          <div class="logo_box">
-            <img class="logo_img" src="./css/Group 33565.svg" alt="Vuxenpoäng logo">
-            <span class="logo_text">Vuxenpoäng</span>
+  <body>
+    <main class="page">
+      <section class="card" aria-labelledby="signup-title">
+        <header class="card_header">
+          <div class="top_logo">
+            <div class="logo_box">
+              <img
+                class="logo_img"
+                src="./css/Group 33565.svg"
+                alt="Vuxenpoäng logo"
+              />
+              <span class="logo_text">Vuxenpoäng</span>
+            </div>
           </div>
-        </div>
 
-        <h1 id="signup-title">Skapa konto</h1>
+          <h1 id="signup-title">Skapa konto</h1>
 
-        <p class="subtitle">Skriv in din användarnamn</p>
+          <p class="subtitle">Skriv in din användarnamn</p>
+        </header>
 
-
-      </header>
-
-      <form id="signupForm" class="form" method="post" action="http://localhost:3000/api/register" novalidate>
-        <div class="field">
-          <label for="username">Användarnamn</label>
-          <input id="username" name="username" type="text" autocomplete="username" placeholder="Ange användarnamn"
-            minlength="3" maxlength="20" required />
-        </div>
-
-        <div class="field">
-          <label for="password">Lösenord</label>
-          <div class="password">
-            <input id="password" name="password" type="password" autocomplete="new-password" placeholder="Ange lösenord"
-              minlength="8" maxlength="72" required />
-
-            <button type="button" class="password_toggle" id="togglePassword" aria-label="Visa lösenord">
-              Visa
-            </button>
+        <form id="signupForm" class="form" novalidate>
+          <div class="field">
+            <label for="username">Användarnamn</label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              autocomplete="username"
+              placeholder="Ange användarnamn"
+              minlength="3"
+              maxlength="20"
+              required
+            />
           </div>
-        </div>
 
-        <div class="field">
-          <label for="passwordConfirm">Bekräfta lösenord</label>
-          <input id="passwordConfirm" name="passwordConfirm" type="password" autocomplete="new-password"
-            placeholder="Skriv samma lösenord igen" minlength="8" maxlength="72" required />
-        </div>
+          <div class="field">
+            <label for="password">Lösenord</label>
+            <div class="password">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="new-password"
+                placeholder="Ange lösenord"
+                minlength="8"
+                maxlength="72"
+                required
+              />
 
+              <button
+                type="button"
+                class="password_toggle"
+                id="togglePassword"
+                aria-label="Visa lösenord"
+              >
+                Visa
+              </button>
+            </div>
+          </div>
 
+          <div class="field">
+            <label for="passwordConfirm">Bekräfta lösenord</label>
+            <input
+              id="passwordConfirm"
+              name="passwordConfirm"
+              type="password"
+              autocomplete="new-password"
+              placeholder="Skriv samma lösenord igen"
+              minlength="8"
+              maxlength="72"
+              required
+            />
+          </div>
 
+          <button class="btn btn-primary" type="submit">Skapa konto</button>
 
+          <p class="small">
+            Har du redan konto?
+            <a href="login.html" class="link" id="goToLogin">Logga in</a>
+          </p>
 
-        <button class="btn btn-primary" type="submit">Skapa konto</button>
+          <div
+            id="formMessage"
+            class="message"
+            role="status"
+            aria-live="polite"
+          ></div>
+        </form>
+      </section>
+    </main>
 
-        <p class="small">
-          Har du redan konto?
-          <a href="login.html" class="link" id="goToLogin">Logga in</a>
-        </p>
-
-        <div id="formMessage" class="message" role="status" aria-live="polite"></div>
-      </form>
-    </section>
-  </main>
-
-  <script>
-    const toggleBtn = document.getElementById("togglePassword");
-    const pwd = document.getElementById("password");
-
-    toggleBtn?.addEventListener("click", () => {
-      const isHidden = pwd.type === "password";
-      pwd.type = isHidden ? "text" : "password";
-      toggleBtn.textContent = isHidden ? "Dölj" : "Visa";
-      toggleBtn.setAttribute(
-        "aria-label",
-        isHidden ? "Dölj lösenord" : "Visa lösenord"
-      );
-    });
-  </script>
-
-  <script type="module" src="./register.js"></script>
-</body>
-
+    <script type="module" src="./register.js"></script>
+  </body>
 </html>

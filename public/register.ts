@@ -4,6 +4,7 @@ type RegisterResponse =
 
 const API_URL = "http://localhost:3000/api/register";
 
+
 function byId<T extends HTMLElement>(id: string): T {
   const el = document.getElementById(id);
   if (!el) throw new Error(`Hittar inte element med id="${id}"`);
@@ -24,6 +25,18 @@ window.addEventListener("DOMContentLoaded", () => {
       type === "ok" ? "is-ok" : type === "error" ? "is-error" : "is-info",
     );
   };
+
+  // Toggle Visa/Dölj lösenord
+  const togglePasswordBtn = byId<HTMLButtonElement>("togglePassword");
+togglePasswordBtn?.addEventListener("click", () => {
+  const isHidden = password.type === "password";
+  password.type = isHidden ? "text" : "password";
+  togglePasswordBtn.textContent = isHidden ? "Dölj" : "Visa";
+  togglePasswordBtn.setAttribute(
+    "aria-label",
+    isHidden ? "Dölj lösenord" : "Visa lösenord"
+  );
+});
 
   form.addEventListener("submit", async (e: SubmitEvent) => {
     e.preventDefault();
