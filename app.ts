@@ -5,7 +5,6 @@ import cors from "cors";
 import { connectDB } from "./config/sql.js";
 import {connectMongoDB} from "./config/mongo.js";
 import { registerUser } from "./controllers/authController.js";
-
 // Parse JSON bodies
 app.use(express.json());
 
@@ -17,13 +16,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cors());
 
-
+// //tillfällig test mot insomnia
+// app.post("/test-register", async (req, res) => {
+//     const { username, password } = req.body;
+//     const result = await registerUser(username, password)
+//     res.json(result)
+// });
 
 import authRoutes from "./routes/authRoutes.js";
 app.use("/api", authRoutes);
-
-import modulesRoutes from './routes/modulesRoutes.js'
-app.use("/api", modulesRoutes)
 
 async function startServer() {
     const db = await connectDB();
