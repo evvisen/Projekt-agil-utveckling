@@ -6,8 +6,8 @@ var __awaiter =
       return value instanceof P
         ? value
         : new P(function (resolve) {
-            resolve(value);
-          });
+          resolve(value);
+        });
     }
     return new (P || (P = Promise))(function (resolve, reject) {
       function fulfilled(value) {
@@ -36,14 +36,14 @@ var __generator =
   (this && this.__generator) ||
   function (thisArg, body) {
     var _ = {
-        label: 0,
-        sent: function () {
-          if (t[0] & 1) throw t[1];
-          return t[1];
-        },
-        trys: [],
-        ops: [],
+      label: 0,
+      sent: function () {
+        if (t[0] & 1) throw t[1];
+        return t[1];
       },
+      trys: [],
+      ops: [],
+    },
       f,
       y,
       t,
@@ -55,9 +55,9 @@ var __generator =
       (g["throw"] = verb(1)),
       (g["return"] = verb(2)),
       typeof Symbol === "function" &&
-        (g[Symbol.iterator] = function () {
-          return this;
-        }),
+      (g[Symbol.iterator] = function () {
+        return this;
+      }),
       g
     );
     function verb(n) {
@@ -71,13 +71,13 @@ var __generator =
         try {
           if (
             ((f = 1),
-            y &&
+              y &&
               (t =
                 op[0] & 2
                   ? y["return"]
                   : op[0]
-                  ? y["throw"] || ((t = y["return"]) && t.call(y), 0)
-                  : y.next) &&
+                    ? y["throw"] || ((t = y["return"]) && t.call(y), 0)
+                    : y.next) &&
               !(t = t.call(y, op[1])).done)
           )
             return t;
@@ -153,22 +153,22 @@ window.addEventListener("DOMContentLoaded", function () {
   goToRegisterBtn === null || goToRegisterBtn === void 0
     ? void 0
     : goToRegisterBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        window.location.href = "/index.html"; // register.html
-      });
+      e.preventDefault();
+      window.location.href = "/index.html"; // register.html
+    });
   // Toggle Visa/Dölj lösenord
   var loginTogglePasswordBtn = getLoginElement("togglePassword");
   loginTogglePasswordBtn === null || loginTogglePasswordBtn === void 0
     ? void 0
     : loginTogglePasswordBtn.addEventListener("click", function () {
-        var isHidden = loginPassword.type === "password";
-        loginPassword.type = isHidden ? "text" : "password";
-        loginTogglePasswordBtn.textContent = isHidden ? "Dölj" : "Visa";
-        loginTogglePasswordBtn.setAttribute(
-          "aria-label",
-          isHidden ? "Dölj lösenord" : "Visa lösenord"
-        );
-      });
+      var isHidden = loginPassword.type === "password";
+      loginPassword.type = isHidden ? "text" : "password";
+      loginTogglePasswordBtn.textContent = isHidden ? "Dölj" : "Visa";
+      loginTogglePasswordBtn.setAttribute(
+        "aria-label",
+        isHidden ? "Dölj lösenord" : "Visa lösenord"
+      );
+    });
   // Funktion för att visa meddelanden
   var setLoginMessage = function (text, type) {
     if (type === void 0) {
