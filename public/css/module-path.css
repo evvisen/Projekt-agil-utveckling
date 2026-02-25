@@ -490,4 +490,17 @@ body {
   .sheet {
     border-radius: 32px;
   }
+
+  .node--unlocked {
+    background: #fff;
+    color: var(--brandPurple);
+    border: 6px solid #fff;
+    box-shadow: 0 10px 22px rgba(17, 24, 39, 0.12);
+  }
+
+  .label--unlocked {
+    background: #fff;
+    color: var(--brandPurple);
+    border: 1px solid rgba(125, 57, 235, 0.25);
+  }
 }
