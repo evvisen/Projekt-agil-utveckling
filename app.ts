@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 import cors from "cors";
 import { connectDB } from "./config/sql.js";
-import {connectMongoDB} from "./config/mongo.js";
+import { database } from "./config/mongodb.js";
 import { registerUser } from "./controllers/authController.js";
 // Parse JSON bodies
 app.use(express.json());
@@ -26,9 +26,12 @@ app.use(cors());
 import authRoutes from "./routes/authRoutes.js";
 app.use("/api", authRoutes);
 
+import quizRoutes from "./routes/quizRoutes.js";
+app.use("/api", quizRoutes);
+
 async function startServer() {
     const db = await connectDB();
-    const mongo= await connectMongoDB();
+    await database();
     app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 }
 startServer();

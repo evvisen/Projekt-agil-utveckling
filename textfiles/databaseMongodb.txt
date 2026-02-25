@@ -1,69 +1,142 @@
 use quiz
 
-db.ekonomiquiz.insertMany(
-    {
-        mongo_quiz_id: "ekonomi_lvl_1",
-        namn: "Grundläggande privatekonomi",
-        nivå: 1,
-        frågor: [
-            "1. Vad är ett sparkonto?",
-            "2. Vad innebär effektiv ränta?",
-            "3. Vad betyder det att diversifiera sitt sparande?"
-            ],
-        svarsalternativ: {
-            fråga1: {A: false, B: true, C:false, D:false},
-            fråga2: {A: false, B: true, C:false, D:false},
-            fråga3: {A: false, B: false, C:true, D:false}
-        },
-        mongo_quiz_id: "ekonomi_lvl_2",
-        namn: "Lån, budget och investeringar",
-        nivå: 2,
-        frågor: [
-            "1. Vad är en budget?",
-            "2. Vad händer om du bara betalar minimibeloppet på ett kreditkort?",
-            "3. Vad är skillnaden mellan aktier och fonder?"
-            ],
-        svarsalternativ: {
-            fråga1: {A: false, B: true, C:false, D:false},
-            fråga2: {A: false, B: false, C:true, D:false},
-            fråga3: {A: false, B: true, C:false, D:false}
-        },
+db.ekonomiquiz.insertMany([
+  {
+    namn: "Grundläggande privatekonomi",
+    nivå: 1,
+    frågor: [
+      "1. Vad är ett sparkonto?",
+      "2. Vad innebär effektiv ränta?",
+      "3. Vad betyder det att diversifiera sitt sparande?"
+    ],
+    svarsalternativ1: [
+        "A. Ett konto där du lånar pengar av banken",
+        "B. Ett konto där du förvarar pengar och får ränta",
+        "C. Ett konto som bara företag får använda",
+        "D. Ett konto utan möjlighet att ta ut pengar",
+        ],
+    svarsalternativ2: [
+        "A. Räntan utan avgifter",
+        "B. Räntan inklusive avgifter och kostnader",
+        "C. Räntan före skatt",
+        "D. Räntan per dag"
+        ],
+    svarsalternativ3: [
+          "A. Att spara alla pengar i en aktie",
+          "B. Att undvika att spara",
+          "C. Att sprida sina investeringar för att minska risk",
+          "D. Att bara investera i säkra tillgångar"
+          ],
+      rätt_svar: [
+          "svarsalternativ1: B",
+          "svarsalternativ2: B",
+          "svarsalternativ3: C"
+          ]
+  },
+  {
+    namn: "Lån, budget och investeringar",
+    nivå: 2,
+    frågor: [
+            "Fråga 1: Vad är en budget?",
+            "Fråga 2: Vad händer om du bara betalar minimibeloppet på ett kreditkort?",
+            "Fråga 3: Vad är skillnaden mellan aktier och fonder?"
+        ],
+    svarsalternativ1: [
+        "A. En lista över skulder",
+        "B. En plan över inkomster och utgifter",
+        "C. En typ av bankkonto",
+        "D. Ett slags lån"
+        ],
+    svarsalternativ2: [
+        "A. Skulden försvinner snabbare",
+        "B. Du slipper ränta",
+        "C. Skulden minskar långsamt och räntekostnaden blir högre",
+        "D. Banken stänger kortet direkt"
+        ],
+    svarsalternativ3: [
+        "A. Aktier är säkrare än fonder",
+        "B. Fonder innehåller flera värdepapper medan en aktie är ägande i ett företag",
+        "C. Fonder har ingen risk",
+        "D. Aktier ger alltid garanterad avkastning"
+        ],
+        rätt_svar: [
+          "svarsalternativ1: B",
+          "svarsalternativ2: C",
+          "svarsalternativ3: B"
+          ]
+  }
 
+])
 
+db.juridikquiz.insertMany([
+   {
+    namn: "Grundläggande juridik",
+    nivå: 1,
+    frågor: [
+      "Fråga 1: Vad är en lag?",
+      "Fråga 2: Vad krävs för att ett avtal ska vara giltigt enligt avtalsrätten?",
+      "Fråga 3: Vad innebär principalansvar?"
+    ],
+    svarsalternativ1: [
+        "A. En rekommendation från en myndighet",
+        "B. En regel beslutad av riksdagen som är bindande",
+        "C. Ett avtal mellan två privatpersoner",
+        "D. Ett förslag från regeringen",
+        ],
+    svarsalternativ2: [
+        "A. Att det är skriftligt",
+        "B. Att det är bevittnat",
+        "C. Anbud och accept",
+        "D. Att en jurist godkänner det"
+        ],
+    svarsalternativ3: [
+          "A. Att en anställd alltid ansvarar för företagets skulder",
+          "B. Att arbetsgivaren ansvarar för skador som en anställd orsakar i tjänsten\n",
+          "C. Att staten ansvarar för alla skador",
+          "D. Att ingen kan hållas ansvarig för misstag"
+          ],
+        rätt_svar: [
+          "svarsalternativ1: B",
+          "svarsalternativ2: C",
+          "svarsalternativ3: B"
+          ]
+  },
+  {
+    namn: "Straffrätt och civilrätt",
+    nivå: 2,
+    frågor: [
+            "Fråga 1: Vad är skillnaden mellan civilrätt och straffrätt?",
+            "Fråga 2: Vad menas med uppsåt i straffrätten?",
+            "Fråga 3: Vad innebär preskription?"
+        ],
+    svarsalternativ1: [
+        "A. Civilrätt gäller brott, straffrätt gäller avtal",
+        "B. Civilrätt gäller tvister mellan enskilda, straffrätt gäller brott mot staten",
+        "C. Det är ingen skillnad",
+        "D. Straffrätt gäller bara företag"
+        ],
+    svarsalternativ2: [
+        "A. Att handlingen var en olycka",
+        "B. Att personen medvetet begick handlingen",
+        "C. Att personen ångrar sig",
+        "D. Att skadan var liten"
+        ],
+    svarsalternativ3: [
+        "A. Att ett brott alltid leder till fängelse",
+        "B. Att en skuld automatiskt betalas",
+        "C. Att rätten att väcka talan eller döma för brott upphör efter viss tid",
+        "D. Att domstolen tar över ärendet direkt"
+        ],
+    rätt_svar: [
+          "svarsalternativ1: B",
+          "svarsalternativ2: B",
+          "svarsalternativ3: C"
+          ]
+  }
+])
 
-    }
-)
+db.ekonomiquiz.find()
+db.juridikquiz.find()
 
-db.juridikquiz.insertMany(
-    {
-        mongo_quiz_id: "juridik_lvl_1",
-        namn: "Grundläggande juridik",
-        nivå: 1,
-        frågor: [
-            "1. Vad är en lag?",
-            "2. Vad krävs för att ett avtal ska vara giltigt enligt avtalsrätten?",
-            "3. Vad innebär principalansvar?"
-            ],
-        svarsalternativ: {
-            fråga1: {A: false, B: true, C:false, D:false},
-            fråga2: {A: false, B: false, C:true, D:false},
-            fråga3: {A: false, B: true, C:false, D:false}
-        },
-        mongo_quiz_id: "juridik_lvl_2",
-        namn: "Straffrätt och civilrätt",
-        nivå: 2,
-        frågor: [
-            "1. Vad är skillnaden mellan civilrätt och straffrätt?",
-            "2. Vad menas med uppsåt i straffrätten?",
-            "3. Vad innebär preskription?"
-            ],
-        svarsalternativ: {
-            fråga1: {A: false, B: true, C:false, D:false},
-            fråga2: {A: false, B: true, C:false, D:false},
-            fråga3: {A: false, B: false, C:true, D:false}
-        },
-
-
-
-    }
-)
+db.ekonomiquiz.deleteOne({nivå: 1})
+db.ekonomiquiz.deleteOne({nivå: 2})
