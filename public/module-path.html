@@ -53,9 +53,9 @@
           <div class="label label--active">Nivå 1: Grunder</div>
         </a>
 
-        <a class="level level--locked levelLink" href="#locked-popup" aria-label="Nivå 2 låst">
-          <div class="node node--locked" aria-hidden="true">🔒</div>
-          <div class="label label--locked">Nivå 2: Hyresrätt</div>
+        <a id="level2Link" class="level level--locked levelLink" href="#locked-popup" aria-label="Nivå 2 låst">
+          <div id="level2Node" class="node node--locked" aria-hidden="true">🔒</div>
+          <div id="level2Label" class="label label--locked">Nivå 2: Hyresrätt</div>
         </a>
 
         <a class="level level--locked levelLink" href="#locked-popup" aria-label="Nivå 3 låst">
@@ -162,6 +162,40 @@
       <a class="sheet__close" href="#">Stäng</a>
     </div>
   </section>
+
+  <script>
+    (function () {
+      function readUnlocks() {
+        try {
+          return JSON.parse(localStorage.getItem("vuxenpoang_unlocks_v1") || "{}");
+        } catch {
+          return {};
+        }
+      }
+
+      const unlocks = readUnlocks();
+      const lvl1Passed = unlocks?.juridik_lvl1?.passed === true;
+
+      if (!lvl1Passed) return;
+
+      const link = document.getElementById("level2Link");
+      const node = document.getElementById("level2Node");
+      const label = document.getElementById("level2Label");
+
+      if (!link || !node || !label) return;
+
+      link.href = "./quiz.html?module=juridik&level=2";
+      link.setAttribute("aria-label", "Öppna nivå 2");
+      node.classList.remove("node--locked");
+      label.classList.remove("label--locked");
+      link.classList.remove("level--locked");
+      node.classList.add("node--unlocked");
+      label.classList.add("label--unlocked");
+
+      node.textContent = "2";
+    })();
+  </script>
+
 </body>
 
 </html>
