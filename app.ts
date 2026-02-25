@@ -29,6 +29,10 @@ app.use("/api", authRoutes);
 import quizRoutes from "./routes/quizRoutes.js";
 app.use("/api", quizRoutes);
 
+import modulesRoutes from './routes/modulesRoutes.js'
+app.use("/api", modulesRoutes)
+
+
 async function startServer() {
     const db = await connectDB();
     await database();
