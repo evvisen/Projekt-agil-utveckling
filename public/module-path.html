@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="sv">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vuxenpoäng – Juridik</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/module-path.css" />
+</head>
+
+<body>
+  <div class="app">
+
+    <header class="topbar">
+      <div class="brand">
+        <img class="logoImg" src="images/Logo.svg" alt="Vuxenpoäng" />
+      </div>
+
+      <div class="topActions">
+        <div class="streakPill" aria-label="Streak">
+          <span aria-hidden="true">🔥</span>
+          <strong>2</strong>
+        </div>
+
+        <a class="avatar" href="images/profile-pic.png" aria-label="Profil">
+          <span class="avatarImg" aria-hidden="true"></span>
+        </a>
+      </div>
+    </header>
+
+    <section class="moduleBar">
+      <a class="backBtn" href="./index.html" aria-label="Tillbaka">←</a>
+
+      <div class="moduleTitle">
+        <h1>Juridik</h1>
+        <p>Lär dig dina rättigheter</p>
+      </div>
+
+      <div class="progressBadge" aria-label="Progress 1 av 8">1/8</div>
+    </section>
+
+    <main class="content">
+      <section class="pathCard" aria-label="Nivåer">
+        <div class="pathLine" aria-hidden="true"></div>
+
+        <a class="level level--active levelLink" href="#level1-popup" aria-label="Öppna nivå 1">
+          <div class="halo" aria-hidden="true"></div>
+          <div class="node node--active" aria-hidden="true">1</div>
+          <div class="label label--active">Nivå 1: Grunder</div>
+        </a>
+
+        <a class="level level--locked levelLink" href="#locked-popup" aria-label="Nivå 2 låst">
+          <div class="node node--locked" aria-hidden="true">🔒</div>
+          <div class="label label--locked">Nivå 2: Hyresrätt</div>
+        </a>
+
+        <a class="level level--locked levelLink" href="#locked-popup" aria-label="Nivå 3 låst">
+          <div class="node node--locked" aria-hidden="true">🔒</div>
+          <div class="label label--locked">Nivå 3: Avtal</div>
+        </a>
+
+        <a class="level level--locked levelLink" href="#locked-popup" aria-label="Nivå 4 låst">
+          <div class="node node--locked" aria-hidden="true">🔒</div>
+          <div class="label label--locked">Nivå 4: Arbetsrätt</div>
+        </a>
+
+        <a class="level level--locked levelLink" href="#locked-popup" aria-label="Nivå 5 låst">
+          <div class="node node--locked" aria-hidden="true">🔒</div>
+          <div class="label label--locked">Nivå 5: Konsumenträtt</div>
+        </a>
+
+        <a class="level level--locked levelLink" href="#locked-popup" aria-label="Nivå 6 låst">
+          <div class="node node--locked" aria-hidden="true">🔒</div>
+          <div class="label label--locked">Nivå 6: Försäkringar</div>
+        </a>
+
+        <a class="level level--locked levelLink" href="#locked-popup" aria-label="Nivå 7 låst">
+          <div class="node node--locked" aria-hidden="true">🔒</div>
+          <div class="label label--locked">Nivå 7: Sambolagen</div>
+        </a>
+
+        <a class="level level--locked levelLink" href="#locked-popup" aria-label="Nivå 8 låst">
+          <div class="node node--locked" aria-hidden="true">🔒</div>
+          <div class="label label--locked">Nivå 8: Tvister & hjälp</div>
+        </a>
+      </section>
+    </main>
+
+    <nav class="bottomNav" aria-label="Navigation">
+      <a class="navItem" href="./index.html">
+        <img class="navSvg" src="./images/home.svg" alt="" aria-hidden="true" />
+        <span class="navLabel">Hem</span>
+      </a>
+
+      <a class="navItem isActive" href="./modules.html">
+        <img class="navSvg" src="./images/moduler-active.svg" alt="" aria-hidden="true" />
+        <span class="navLabel">Moduler</span>
+      </a>
+
+      <a class="navItem" href="./progress.html">
+        <img class="navSvg" src="./images/framsteg.svg" alt="" aria-hidden="true" />
+        <span class="navLabel">Framsteg</span>
+      </a>
+    </nav>
+
+  </div>
+
+  <section id="level1-popup" class="overlay" role="dialog" aria-modal="true" aria-label="Nivå 1 popup">
+    <a class="overlay__backdrop" href="#" aria-label="Stäng"></a>
+
+    <div class="sheet">
+      <div class="sheet__handle" aria-hidden="true"></div>
+
+      <div class="sheet__meta">
+        <span class="pillLevel">NIVÅ 1</span>
+        <span class="pillTime">
+          <img class="metaIcon" src="./images/watch.svg" alt="" aria-hidden="true" />
+          4 min
+        </span>
+      </div>
+
+      <h2 class="sheet__title">Grunder</h2>
+
+      <p class="sheet__desc">
+        Lär dig grunderna innan du går vidare: vad som gäller i vardagen och vilka rättigheter du har.
+      </p>
+
+      <a class="sheet__cta" href="./quiz.html">
+        <img class="ctaIcon" src="./images/play.svg" alt="" aria-hidden="true" />
+        Starta quiz
+      </a>
+
+      <a class="sheet__close" href="#">Stäng</a>
+    </div>
+  </section>
+
+  <section id="locked-popup" class="overlay" role="dialog" aria-modal="true" aria-label="Låst nivå">
+    <a class="overlay__backdrop" href="#" aria-label="Stäng"></a>
+
+    <div class="sheet sheet--small">
+      <div class="sheet__handle" aria-hidden="true"></div>
+
+      <div class="sheet__meta">
+        <span class="pillLevel">LÅST</span>
+      </div>
+
+      <h2 class="sheet__title">Du behöver fixa nivå 1 först</h2>
+
+      <p class="sheet__desc">
+        Klara nivå 1 för att låsa upp nästa nivåer.
+      </p>
+
+      <a class="sheet__cta" href="#level1-popup">
+        <img class="ctaIcon" src="./images/play.svg" alt="" aria-hidden="true" />
+        Gå till nivå 1
+      </a>
+
+      <a class="sheet__close" href="#">Stäng</a>
+    </div>
+  </section>
+</body>
+
+</html>
