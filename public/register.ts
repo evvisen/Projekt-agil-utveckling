@@ -4,6 +4,7 @@ type RegisterResponse =
 
 const API_URL = "http://localhost:3000/api/register";
 
+
 function byId<T extends HTMLElement>(id: string): T {
   const el = document.getElementById(id);
   if (!el) throw new Error(`Hittar inte element med id="${id}"`);
@@ -24,6 +25,18 @@ window.addEventListener("DOMContentLoaded", () => {
       type === "ok" ? "is-ok" : type === "error" ? "is-error" : "is-info",
     );
   };
+
+  // Toggle Visa/Dölj lösenord
+  const togglePasswordBtn = byId<HTMLButtonElement>("togglePassword");
+togglePasswordBtn?.addEventListener("click", () => {
+  const isHidden = password.type === "password";
+  password.type = isHidden ? "text" : "password";
+  togglePasswordBtn.textContent = isHidden ? "Dölj" : "Visa";
+  togglePasswordBtn.setAttribute(
+    "aria-label",
+    isHidden ? "Dölj lösenord" : "Visa lösenord"
+  );
+});
 
   form.addEventListener("submit", async (e: SubmitEvent) => {
     e.preventDefault();
@@ -60,7 +73,7 @@ window.addEventListener("DOMContentLoaded", () => {
       });
 
       const data = (await res.json()) as Partial<RegisterResponse> & {
-        sucess?: boolean;
+        success?: boolean;
       };
 
       const success = (data as any).success ?? (data as any).sucess ?? false;
@@ -75,20 +88,16 @@ window.addEventListener("DOMContentLoaded", () => {
 
       setMessage((data as any).message || "Användare skapad!", "ok");
 
-      if ((data as any).token) {
-        localStorage.setItem("token", (data as any).token);
-      }
 
-      form.reset();
+
+
+      window.location.href= "/login.html";
+
     } catch (err) {
       console.error(err);
       setMessage("Kunde inte kontakta servern. Är backend igång?", "error");
     }
   });
 
-  const goToLogin = document.getElementById("goToLogin");
-  goToLogin?.addEventListener("click", (e: MouseEvent) => {
-    e.preventDefault();
-    window.location.href = "/login.html";
-  });
+
 });

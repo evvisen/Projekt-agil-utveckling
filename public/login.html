@@ -9,18 +9,31 @@
 </head>
 
 <body>
-
   <main class="page">
 
+    <section class="hero" aria-label="Citat">
+      <div class="quote_box">
 
 
+        <img class="corner corner--tl" src="./css/Vector 2.svg" alt="" aria-hidden="true" />
+        <img class="corner corner--br" src="./css/Vector 2.svg" alt="" aria-hidden="true" />
+
+        <h2 class="quote_text">
+          Den som har ett varför kan<br />
+          uthärda<br />
+          nästan vilket<br />
+          hur som helst.
+        </h2>
+        <p class="quote_author">Friedrich<br />Nietzsche</p>
+      </div>
+
+    </section>
 
     <section class="card" aria-labelledby="signup-title">
       <header class="card_header">
-
         <div class="top_logo">
           <div class="logo_box">
-            <img class="logo_img" src="./css/Group 33565.svg" alt="Vuxenpoäng logo">
+            <img class="logo_img" src="./css/Group 33565.svg" alt="Vuxenpoäng logo" />
             <span class="logo_text">Vuxenpoäng</span>
           </div>
         </div>
@@ -28,11 +41,9 @@
         <h1 id="signup-title">Logga in på ditt konto</h1>
 
         <p class="subtitle">med din registrerade användarnamn</p>
-
-
       </header>
 
-      <form id="signupForm" class="form" method="post" action="http://localhost:3000/api/login" novalidate>
+      <form id="signupForm" class="form" method="post" novalidate>
         <div class="field">
           <label for="username">Användarnamn</label>
           <input id="username" name="username" type="text" autocomplete="username" placeholder="Ange Användarnamn"
@@ -51,10 +62,6 @@
           </div>
         </div>
 
-
-
-
-
         <button class="btn btn-primary" type="submit">Logga in</button>
 
         <p class="small">
@@ -67,22 +74,7 @@
     </section>
   </main>
 
-  <script>
-    const toggleBtn = document.getElementById("togglePassword");
-    const pwd = document.getElementById("password");
-
-    toggleBtn?.addEventListener("click", () => {
-      const isHidden = pwd.type === "password";
-      pwd.type = isHidden ? "text" : "password";
-      toggleBtn.textContent = isHidden ? "Dölj" : "Visa";
-      toggleBtn.setAttribute(
-        "aria-label",
-        isHidden ? "Dölj lösenord" : "Visa lösenord"
-      );
-    });
-  </script>
-
-  <script type="module" src="./login.js"></script>
+  <script type="module" src="js/login.js"></script>
 </body>
 
 </html>

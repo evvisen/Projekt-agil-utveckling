@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="sv">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz – Vuxenpoäng</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/quiz.css" />
+</head>
+
+<body>
+  <div class="quizApp" id="quizApp">
+    <header class="quizTop">
+      <div class="quizBrand">
+        <img class="quizLogo" src="images/Logo.svg" alt="Vuxenpoäng" />
+      </div>
+
+      <div class="quizTopRight">
+        <div class="streakPill" aria-label="Streak">
+          <span aria-hidden="true">🔥</span>
+          <strong id="streakCount">2</strong>
+        </div>
+
+        <a class="avatar" href="images/profile-pic.png" aria-label="Profil">
+          <span class="avatarImg" aria-hidden="true"></span>
+        </a>
+      </div>
+    </header>
+
+    <main class="quizMain">
+      <section class="quizHeader">
+        <button class="closeBtn" id="closeBtn" aria-label="Avsluta quiz">✕</button>
+
+        <div class="quizHeaderText">
+          <h1 id="quizTitle">Juridik • Nivå 1</h1>
+          <p class="subText">Fråga <span id="qIndex">1</span> av <span id="qTotal">5</span></p>
+
+          <div class="progressBar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+            <div class="progressFill" id="progressFill" style="width: 0%"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="quizBody">
+        <h2 class="question" id="questionText"></h2>
+        <div class="answers" id="answers"></div>
+
+        <div class="footerRow">
+          <button class="nextBtn" id="nextBtn" disabled>Nästa fråga</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <section class="overlay" id="feedbackOverlay" aria-hidden="true">
+    <div class="overlayBackdrop" id="overlayBackdrop"></div>
+
+    <div class="sheet" role="dialog" aria-modal="true" aria-label="Feedback">
+      <div class="sheetHandle" aria-hidden="true"></div>
+
+      <div class="feedbackTop">
+        <span class="feedbackPill" id="feedbackPill">Rätt svar</span>
+      </div>
+
+      <h3 class="feedbackTitle" id="feedbackTitle">Bra jobbat!</h3>
+      <p class="feedbackText" id="feedbackText"></p>
+
+      <button class="sheetCta" id="feedbackCta">Fortsätt</button>
+    </div>
+  </section>
+
+  <script type="module" src="js/quiz.js"></script>
+</body>
+
+</html>
