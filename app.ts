@@ -32,6 +32,9 @@ app.use("/api", quizRoutes);
 import modulesRoutes from './routes/modulesRoutes.js'
 app.use("/api", modulesRoutes)
 
+import questionRoutes from './routes/questionsRoutes.js'
+app.use("/api", questionRoutes)
+
 
 async function startServer() {
     const db = await connectDB();
