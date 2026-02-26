@@ -8,6 +8,7 @@ interface Quiz {
     svarsalternativ1: string[],
     svarsalternativ2: string[],
     svarsalternativ3: string[],
+    rätt_svar: string[]
 }
 
 export const getEkonomiquiz = async (req: Request, res: Response) => {
