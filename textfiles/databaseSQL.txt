@@ -33,10 +33,12 @@ CREATE TABLE users (
 CREATE TABLE quiz_questions (
     quiz_questions_id INT NOT NULL AUTO_INCREMENT,
     module_level_id INT NOT NULL,
+    module_id INT NOT NULL,
     quiz_question VARCHAR(255) NOT NULL,
     correct_option VARCHAR(1) NOT NULL,
     PRIMARY KEY (quiz_questions_id),
-    FOREIGN KEY (module_level_id) REFERENCES module_levels(module_level_id)
+    FOREIGN KEY (module_level_id) REFERENCES module_levels(module_level_id),
+    FOREIGN KEY (module_id) REFERENCES modules(module_id)
 );
 
 CREATE TABLE user_quiz_answer (
@@ -85,10 +87,13 @@ VALUES
 INSERT INTO users (username, password_hash)
 VALUES ('användare1', 'hashedpassword123');
 
-INSERT INTO quiz_questions (module_level_id, quiz_question, correct_option)
-VALUES (1, 'Vad är en lag?', 'B'),
-       (1, 'Vad krävs för att ett avtal ska vara giltigt enligt avtalsrätten?', 'C'),
-       (2, 'Vad är en budget?', 'A');
+INSERT INTO quiz_questions (module_level_id,module_id, quiz_question, correct_option)
+VALUES (1, 1,'Vad är en lag?', 'B'),
+       (1,1, 'Vad krävs för att ett avtal ska vara giltigt enligt avtalsrätten?', 'C'),
+       (1,1,'Vad innebär principalansvar?', 'B'),
+       (2,1, 'Vad är skillnaden mellan civilrätt och straffrätt?', 'B'),
+       (2,1,'Vad menas med uppsåt i straffrätten?','B'),
+       (2,1,'Vad innebär preskription?', 'C');
 
 INSERT INTO user_quiz_answer (quiz_question_id, user_id, selected_option, is_correct)
 VALUES (1,1,'B', true),
@@ -109,6 +114,8 @@ SELECT * FROM users;
 SELECT * FROM modules;
 SELECT * FROM module_levels;
 SELECT * FROM user_module_progress;
+SELECT * FROM quiz_questions;
+
 
 -- INNER JOIN
 
@@ -119,6 +126,11 @@ INNER JOIN user_module_progress ump on u.user_id = ump.user_id
 INNER JOIN module_levels ml on ump.module_level_id = ml.module_level_id
 INNER JOIN modules m on ml.module_id = m.module_id
 WHERE u.user_id = 1;
+
+SELECT m.name AS module, ml.level_number, quiz_questions_id, quiz_question, correct_option
+FROM quiz_questions qq
+INNER JOIN modules m on qq.module_id = m.module_id
+INNER JOIN module_levels ml on qq.module_level_id = ml.module_level_id;
 
 -- visa vilka quiz användaren får spela (alla som inte har status "locked"
 SELECT ml.module_level_id, m.name AS module, ml.level_number
@@ -151,6 +163,10 @@ UPDATE user_module_progress SET status = 'unlocked'
 WHERE user_id = 1 AND module_level_id = 2;
 
 SELECT * FROM module_levels WHERE module_id=1 AND level_number=2;
+
+
+
+-- skriva ut module namn till varje quiz
 
 
 DROP TABLE modules;
