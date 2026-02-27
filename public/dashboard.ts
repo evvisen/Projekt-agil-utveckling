@@ -1,7 +1,9 @@
-window.addEventListener("DOMContentLoaded", () => {
-  const continueBtn = document.getElementById("continueBtn") as HTMLButtonElement;
+// window.addEventListener("DOMContentLoaded", () => {
+//   const continueBtn = document.getElementById("continueBtn") as HTMLButtonElement | null;
 
-  continueBtn.addEventListener("click", () => {
-    window.location.href = "/quiz.html";
-  });
-});
+//   if (!continueBtn) return;
+
+//   continueBtn.addEventListener("click", () => {
+//     window.location.href = "/quiz.html";
+//   });
+// });

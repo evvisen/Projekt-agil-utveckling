@@ -5,6 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/dashboard.css" />
 </head>
 
@@ -12,147 +15,410 @@
 
   <div class="app">
 
-    <header class="topbar">
-      <div class="brand">
-        <img class="brand__logo" src="./css/images-2/Group 33565.svg" alt="Logo" />
-        <span class="brand__name">Vuxenpoäng</span>
-      </div>
+    <div class="desktop-shell">
 
-      <div class="topbar__right">
-        <div class="streak">
-          <img class="streak__icon" src="./css/images-2/Vector (4).svg" alt="Streak" />
-          <span class="streak__count">2</span>
+
+      <aside class="sidebar" aria-label="Sidomeny">
+        <div class="sidebar__brand">
+          <img class="sidebar__logo" src="./css/images-2/Group 33565.svg" alt="Logo" />
+          <span class="sidebar__name">Vuxenpoäng</span>
         </div>
 
-        <button class="avatar" type="button" aria-label="Profil">
-          <img class="avatar__img" src="./css/images-2/9ade6d8d3c09e3777853dbc036bfa9f92853e86c.jpg" alt="Profilbild" />
-        </button>
-      </div>
-    </header>
+        <nav class="side-nav">
+          <a class="side-nav__item is-active" href="#">
+            <span class="side-nav__icon"><img src="./css/images-2/Vector (6).svg" alt=""></span>
+            Översikt
+          </a>
 
+          <a class="side-nav__item" href="#">
+            <span class="side-nav__icon"><img src="./css/images-2/Frame 33575.svg" alt=""></span>
+            Moduler
+          </a>
 
-    <main class="content">
+          <a class="side-nav__item" href="#">
+            <span class="side-nav__icon"><img src="./css/images-2/Frame 33576.svg" alt=""></span>
+            Framsteg
+          </a>
 
-      <section class="card card--welcome">
-        <div class="welcome__left">
-          <p class="muted">Välkommen tillbaka</p>
-          <h1 class="welcome__title">Hej, Oskar!</h1>
+          <a class="side-nav__item" href="#">
+            <span class="side-nav__icon"><img src="./css/images-2/SVG (4).svg" alt=""></span>
+            Prestationer
+          </a>
+        </nav>
 
-          <div class="welcome__meta">
-            <span class="level">Nivå 4</span>
-          </div>
-
-          <div class="progress">
-            <div class="progress__bar" style="width: 38%;"></div>
-          </div>
-          <p class="progress__text">850 poäng till nästa</p>
-        </div>
-
-        <div class="welcome__right">
-          <div class="points">
-            <div class="points__value">420</div>
-            <div class="points__label">poäng</div>
-          </div>
-        </div>
-      </section>
-
-
-      <section class="section">
-        <div class="section__header">
-          <h2 class="section__title">Fortsätt resa</h2>
-        </div>
-
-        <div class="module">
-          <div class="module__left">
-            <div class="module__icon">
-              <img src="./css/images-2/Vector (5).svg" alt="Juridik" />
-            </div>
-            <div class="module__text">
-              <div class="module__title">Juridik</div>
-              <div class="module__sub">Nästa: Nivå 2</div>
+        <div class="sidebar__footer">
+          <div class="profile">
+            <img class="profile__img" src="./css/images-2/9ade6d8d3c09e3777853dbc036bfa9f92853e86c.jpg"
+              alt="Profilbild">
+            <div class="profile__text">
+              <div class="profile__name">Oskar O.</div>
+              <div class="profile__sub">Nivå 4 • Grundare</div>
             </div>
           </div>
+        </div>
+      </aside>
 
-          <div class="module__right">
-            <span class="pill">4 min</span>
+
+      <header class="d-topbar">
+        <div class="crumbs">
+          <span class="crumbs__muted">Hem</span>
+          <span class="crumbs__sep">›</span>
+          <span class="crumbs__current">Översikt</span>
+        </div>
+
+        <div class="d-topbar__right">
+          <div class="streak d-streak">
+            <img class="streak__icon" src="./css/images-2/Vector (4).svg" alt="Streak" />
+            <span class="streak__count">3 dagar i rad</span>
           </div>
 
-          <button class="btn btn--primary" type="button">
-            Fortsätt <span class="btn__arrow">→</span>
+          <button class="icon-btn" type="button" aria-label="Notiser">
+            <img src="./css/images-2/SVG.svg" alt="">
           </button>
         </div>
+      </header>
 
-        <div class="module module--light">
-          <div class="module__left">
-            <div class="module__icon module__icon--mint">
-              <img src="./css/images-2/Group.svg" alt="Privatekonomi" />
+
+      <main class="d-content">
+        <div class="d-grid">
+
+
+          <section class="d-main">
+
+            <div class="page-head">
+              <h1 class="page-title">Hej, Oskar! <span class="wave">👋</span></h1>
+              <p class="page-sub">Dags att lära sig något nytt om hyresrätter idag.</p>
             </div>
-            <div class="module__text">
-              <div class="module__title">Privatekonomi</div>
-              <div class="module__sub">Nästa: Nivå 1</div>
+
+            <div class="card bigcard">
+              <div class="bigcard__top">
+                <div class="bigcard__meta">
+                  <span class="badge">Pågående</span>
+
+
+                  <span class="time">
+                    <img class="time__icon" src="./css/images-2/SVG (5).svg" alt="Tid" />
+                    <span class="time__text">4 min kvar</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="bigcard__body">
+                <div class="bigcard__text">
+                  <h2 class="bigcard__title">Juridik: Hyresrätt &amp; Boende</h2>
+                  <p class="bigcard__desc">
+                    Lär dig vad som gäller när du flyttar hemifrån. Vem ansvarar för reparationer och vad får
+                    hyresvärden egentligen bestämma?
+                  </p>
+
+                  <div class="bigcard__actions">
+                    <a href="/quiz.html" class="btn btn--primary">
+                      <span class="btn__play">▶</span> Fortsätt resa
+                    </a>
+                    <button class="btn btn--secondary" type="button">Visa detaljer</button>
+                  </div>
+                </div>
+
+                <div class="bigcard__progress" aria-label="Progress 65%">
+                  <div class="ring">
+                    <div class="ring__inner">
+                      <div class="ring__value">65%</div>
+                      <div class="ring__label">Klar</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div class="module__right">
-            <span class="pill pill--ghost">6 min</span>
-          </div>
+            <div class="card journey">
+              <div class="journey__head">
+                <h3 class="journey__title">Din Resa: Juridik</h3>
+                <div class="journey__meta">2 av 5 nivåer klara</div>
+              </div>
 
-          <button class="btn btn--secondary" type="button">Fortsätt</button>
+              <div class="steps">
+                <div class="step is-done">
+                  <div class="step__dot">✓</div>
+                  <div class="step__content">
+                    <div class="step__kicker">NIVÅ 1: GRUNDER</div>
+                    <div class="step__name">Rättigheter &amp; Skyldigheter</div>
+                  </div>
+                  <span class="tag tag--done">Avklarad</span>
+                </div>
+
+                <div class="step is-active">
+                  <div class="step__dot">2</div>
+                  <div class="step__content">
+                    <div class="step__kicker step__kicker--purple">NIVÅ 2: HYRESRÄTT</div>
+                    <div class="step__name">Hyresrätt &amp; Boende</div>
+                    <div class="mini-progress">
+                      <div class="mini-progress__bar" style="width:60%;"></div>
+                    </div>
+                  </div>
+                  <span class="tag tag--start">Starta</span>
+                </div>
+
+                <div class="step is-locked">
+                  <div class="step__dot">🔒</div>
+                  <div class="step__content">
+                    <div class="step__kicker">NIVÅ 3: AVTAL</div>
+                    <div class="step__name">Skriva kontrakt</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card journey">
+              <div class="journey__head">
+                <h3 class="journey__title">Din Resa: Privatekonomi</h3>
+                <div class="journey__meta">1 av 5 nivåer klara</div>
+              </div>
+
+              <div class="steps">
+                <div class="step is-done">
+                  <div class="step__dot">✓</div>
+                  <div class="step__content">
+                    <div class="step__kicker">NIVÅ 1: GRUNDER</div>
+                    <div class="step__name">Rättigheter &amp; Skyldigheter</div>
+                  </div>
+                  <span class="tag tag--done">Avklarad</span>
+                </div>
+              </div>
+            </div>
+
+          </section>
+
+
+          <aside class="d-right">
+
+            <div class="stats-row">
+              <div class="card stat">
+                <div class="stat__label">TOTALA POÄNG</div>
+                <div class="stat__value purple">420</div>
+              </div>
+              <div class="card stat">
+                <div class="stat__label">NIVÅ</div>
+                <div class="stat__value">4 <span class="stat__small">/10</span></div>
+              </div>
+            </div>
+
+            <div class="card chart">
+              <div class="chart__head">
+                <div class="chart__title">Veckoaktivitet</div>
+                <button class="icon-btn" type="button" aria-label="Diagram">
+                  <img src="./css/images-2/SVG (3).svg" alt="">
+                </button>
+              </div>
+
+              <div class="bars" aria-hidden="true">
+                <div class="bar" style="height:18%"></div>
+                <div class="bar" style="height:35%"></div>
+                <div class="bar" style="height:60%"></div>
+                <div class="bar bar--purple" style="height:78%"></div>
+                <div class="bar" style="height:42%"></div>
+                <div class="bar" style="height:28%"></div>
+                <div class="bar" style="height:22%"></div>
+              </div>
+
+              <div class="days">
+                <span>M</span><span>T</span><span>O</span><span>T</span><span>F</span><span>L</span><span>S</span>
+              </div>
+            </div>
+
+            <div class="mods">
+              <div class="mods__title">ALLA MODULER</div>
+
+              <div class="card moditem">
+                <div class="moditem__left">
+                  <div class="moditem__icon">
+                    <img src="./css/images-2/Group.svg" alt="Privatekonomi">
+                  </div>
+                  <div class="moditem__text">
+                    <div class="moditem__name">Privatekonomi</div>
+                    <div class="moditem__sub">Hanterar din ekonomi som ett proffs</div>
+                  </div>
+                </div>
+                <div class="moditem__right">1/8</div>
+              </div>
+
+              <div class="card moditem">
+                <div class="moditem__left">
+                  <div class="moditem__icon moditem__icon--amber">
+                    <img src="./css/images-2/SVG (1).svg" alt="Hushåll">
+                  </div>
+                  <div class="moditem__text">
+                    <div class="moditem__name">Hushåll</div>
+                    <div class="moditem__sub">Tvätt, städning och vardagstips</div>
+                  </div>
+                </div>
+                <div class="moditem__right">0/8</div>
+              </div>
+
+              <div class="card moditem is-disabled">
+                <div class="moditem__left">
+                  <div class="moditem__icon moditem__icon--gray">
+                    <img src="./css/images-2/SVG (2).svg" alt="Matlagning">
+                  </div>
+                  <div class="moditem__text">
+                    <div class="moditem__name">Matlagning</div>
+                    <div class="moditem__sub">Låses upp vid nivå 5</div>
+                  </div>
+                </div>
+                <div class="moditem__right">—</div>
+              </div>
+            </div>
+
+          </aside>
+
         </div>
-      </section>
+      </main>
+
+    </div>
 
 
-      <section class="section">
-        <div class="section__header">
-          <h2 class="section__title">Senaste aktivitet</h2>
+
+    <div class="mobile-ui">
+
+      <header class="topbar">
+        <div class="brand">
+          <img class="brand__logo" src="./css/images-2/Group 33565.svg" alt="Logo" />
+          <span class="brand__name">Vuxenpoäng</span>
         </div>
 
-        <div class="activity">
-          <div class="activity__left">
-            <div class="activity__icon">
-              <img src="./css/images-2/Vector (5).svg" alt="Grunder" />
-            </div>
-            <div class="activity__text">
-              <div class="activity__title">Grunder</div>
-              <div class="activity__sub">Igår</div>
-            </div>
+        <div class="topbar__right">
+          <div class="streak">
+            <img class="streak__icon" src="./css/images-2/Vector (4).svg" alt="Streak" />
+            <span class="streak__count">2</span>
           </div>
 
-          <div class="activity__right">
-            <div class="xp">+15 vp</div>
-            <div class="check" aria-hidden="true">✓</div>
-          </div>
+          <button class="avatar" type="button" aria-label="Profil">
+            <img class="avatar__img" src="./css/images-2/9ade6d8d3c09e3777853dbc036bfa9f92853e86c.jpg"
+              alt="Profilbild" />
+          </button>
         </div>
-      </section>
-    </main>
+      </header>
 
+      <main class="content">
 
-    <nav class="bottomnav" aria-label="Huvudmeny">
-      <a class="bottomnav__item is-active" href="#">
-        <span class="bottomnav__icon">
-          <img src="./css/images-2/Vector (6).svg" alt="" />
-        </span>
-        <span class="bottomnav__label">Hem</span>
-      </a>
+        <section class="card card--welcome">
+          <div class="welcome__left">
+            <p class="muted">Välkommen tillbaka</p>
+            <h1 class="welcome__title">Hej, Oskar!</h1>
 
-      <a class="bottomnav__item" href="#">
-        <span class="bottomnav__icon">
-          <img src="./css/images-2/Frame 33575.svg" alt="" />
-        </span>
-        <span class="bottomnav__label">Moduler</span>
-      </a>
+            <div class="welcome__meta">
+              <span class="level">Nivå 4</span>
+            </div>
 
-      <a class="bottomnav__item" href="#">
-        <span class="bottomnav__icon">
-          <img src="./css/images-2/Frame 33576.svg" alt="" />
-        </span>
-        <span class="bottomnav__label">Framsteg</span>
-      </a>
-    </nav>
+            <div class="progress">
+              <div class="progress__bar" style="width: 38%;"></div>
+            </div>
+            <p class="progress__text">850 poäng till nästa</p>
+          </div>
+
+          <div class="welcome__right">
+            <div class="points">
+              <div class="points__value">420</div>
+              <div class="points__label">poäng</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section__header">
+            <h2 class="section__title">Fortsätt resa</h2>
+          </div>
+
+          <div class="module">
+            <div class="module__left">
+              <div class="module__icon">
+                <img src="./css/images-2/Vector (5).svg" alt="Juridik" />
+              </div>
+              <div class="module__text">
+                <div class="module__title">Juridik</div>
+                <div class="module__sub">Nästa: Nivå 2</div>
+              </div>
+            </div>
+
+            <div class="module__right">
+              <span class="pill">4 min</span>
+            </div>
+
+            <a href="/quiz.html" class="btn btn--primary">
+              Fortsätt <span class="btn__arrow">→</span>
+            </a>
+          </div>
+
+          <div class="module module--light">
+            <div class="module__left">
+              <div class="module__icon module__icon--mint">
+                <img src="./css/images-2/Group.svg" alt="Privatekonomi" />
+              </div>
+              <div class="module__text">
+                <div class="module__title">Privatekonomi</div>
+                <div class="module__sub">Nästa: Nivå 1</div>
+              </div>
+            </div>
+
+            <div class="module__right">
+              <span class="pill pill--ghost">6 min</span>
+            </div>
+
+            <button class="btn btn--secondary" type="button">Fortsätt</button>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section__header">
+            <h2 class="section__title">Senaste aktivitet</h2>
+          </div>
+
+          <div class="activity">
+            <div class="activity__left">
+              <div class="activity__icon">
+                <img src="./css/images-2/Vector (5).svg" alt="Grunder" />
+              </div>
+              <div class="activity__text">
+                <div class="activity__title">Grunder</div>
+                <div class="activity__sub">Igår</div>
+              </div>
+            </div>
+
+            <div class="activity__right">
+              <div class="xp">+15 vp</div>
+              <div class="check" aria-hidden="true">✓</div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <nav class="bottomnav" aria-label="Huvudmeny">
+        <a class="bottomnav__item is-active" href="#">
+          <span class="bottomnav__icon">
+            <img src="./css/images-2/Vector (6).svg" alt="" />
+          </span>
+          <span class="bottomnav__label">Hem</span>
+        </a>
+
+        <a class="bottomnav__item" href="#">
+          <span class="bottomnav__icon">
+            <img src="./css/images-2/Frame 33575.svg" alt="" />
+          </span>
+          <span class="bottomnav__label">Moduler</span>
+        </a>
+
+        <a class="bottomnav__item" href="#">
+          <span class="bottomnav__icon">
+            <img src="./css/images-2/Frame 33576.svg" alt="" />
+          </span>
+          <span class="bottomnav__label">Framsteg</span>
+        </a>
+      </nav>
+
+    </div>
+
   </div>
 
-  <script type="module" src="js/dashboard.js"></script>
-
+  <script type="module" src="/js/dashboard.js"></script>
 </body>
 
 </html>
