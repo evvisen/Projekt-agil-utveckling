@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="sv">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moduler – Vuxenpoäng</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/modules.css" />
+</head>
+
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Sidomeny">
+      <div class="sidebarTop">
+        <a class="brand" href="index.html" aria-label="Gå till startsidan">
+          <img class="brandMark" src="images/Logo.svg" alt="Logo" />
+        </a>
+      </div>
+
+      <nav class="sideNav" aria-label="Navigation">
+        <a class="sideNavItem" href="dashboard.html">
+          <span class="sideNavIcon">
+            <img src="images/home.svg" alt="" />
+          </span>
+          <span>Översikt</span>
+        </a>
+
+        <a class="sideNavItem is-active" href="modules.html" aria-current="page">
+          <span class="sideNavIcon">
+            <img src="images/moduler-active.svg" alt="" />
+          </span>
+          <span>Moduler</span>
+        </a>
+
+        <a class="sideNavItem" href="./framsteg.html">
+          <span class="sideNavIcon">
+            <img src="images/framsteg.svg" alt="" />
+          </span>
+          <span>Framsteg</span>
+        </a>
+
+        <a class="sideNavItem" href="./prestationer.html">
+          <span class="sideNavIcon">
+            <img src="images/watch.svg" alt="" />
+          </span>
+          <span>Prestationer</span>
+        </a>
+      </nav>
+
+      <div class="sidebarFooter">
+        <div class="profileCard">
+          <img class="profileAvatar" src="images/profile-pic.png" alt="Profilbild" />
+          <div class="profileMeta">
+            <div class="profileName">Oskar O.</div>
+            <div class="profileSub">Nivå 4 • Grundare</div>
+          </div>
+          <div class="profileChevron" aria-hidden="true">›</div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar" aria-label="Toppmeny">
+        <div class="breadcrumb">
+          <a href="dashboard.html">Hem</a>
+          <span class="crumbSep">›</span>
+          <span class="crumbCurrent">Moduler</span>
+        </div>
+
+        <div class="topbarRight">
+          <div class="pill">
+            <span class="pillIcon" aria-hidden="true">🔥</span>
+            <span class="pillText">2 dagar i rad</span>
+          </div>
+          <button class="iconBtn" type="button" aria-label="Notiser">
+            <span class="bellDot" aria-hidden="true"></span>
+            🔔
+          </button>
+        </div>
+      </header>
+
+      <header class="mobileTopbar" aria-label="Toppmeny mobil">
+        <a class="brand brand--mobile" href="index.html" aria-label="Gå till startsidan">
+          <img class="brandMark" src="images/Logo.svg" alt="Logo" />
+        </a>
+
+        <div class="mobileTopRight">
+          <div class="pill pill--soft">
+            <span class="pillIcon" aria-hidden="true">🔥</span>
+            <span class="pillText">2</span>
+          </div>
+          <img class="avatar" src="images/profile-pic.png" alt="Profilbild" />
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="pageHeader" aria-label="Sidhuvud">
+          <h1 class="h1">Moduler</h1>
+          <p class="muted">Välj vad du vill träna idag</p>
+        </section>
+
+        <section class="desktopHeader" aria-label="Hälsning (desktop)">
+          <div class="helloBlock">
+            <h2 class="helloTitle">Hej, Oskar! <span aria-hidden="true">👋</span></h2>
+            <p class="helloText">Dags att lära sig något nytt om hyresrätter idag.</p>
+          </div>
+
+          <div class="statsRow" aria-label="Statistik">
+            <div class="statCard">
+              <div class="statLabel">TOTALA POÄNG</div>
+              <div class="statValue">420</div>
+              <div class="statSub">Poäng</div>
+            </div>
+
+            <div class="statCard">
+              <div class="statLabel">NIVÅ</div>
+              <div class="statValue">4 <span class="statSmall">/10</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid" aria-label="Moduler och sidopanel">
+          <section class="cards" aria-label="Modulkort">
+            <div id="modulesGrid" class="cardsGrid"></div>
+
+            <button class="loadMore" type="button">
+              Laddar fler <span class="loadMoreIcon" aria-hidden="true">↓</span>
+            </button>
+
+            <div class="comingSoon" aria-label="Kommer snart">
+              <div class="comingSoonTitle">Kommer Snart</div>
+              <div class="comingSoonCard">
+                <div class="comingSoonIcon" aria-hidden="true">🔒</div>
+                <div>
+                  <div class="comingSoonName">Jobb & Lön</div>
+                  <div class="comingSoonDesc">Allt som händer när man får jobb</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <aside class="rightRail" aria-label="Sidopanel">
+            <div class="weekCard">
+              <div class="weekTop">
+                <div class="weekTitle">Veckoaktivitet</div>
+                <img class="graphIcon" src="images/graph.svg" alt="" />
+              </div>
+
+              <div class="weekChart" aria-hidden="true">
+                <div class="barRow">
+                  <span class="bar b1"></span>
+                  <span class="bar b2"></span>
+                  <span class="bar b3 is-active"></span>
+                  <span class="bar b4 is-active"></span>
+                  <span class="bar b5"></span>
+                  <span class="bar b6"></span>
+                  <span class="bar b7"></span>
+                </div>
+                <div class="dayRow">
+                  <span>M</span><span>T</span><span class="is-bold">O</span><span
+                    class="is-bold">T</span><span>F</span><span>L</span><span>S</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="railCard">
+              <div class="railTitle">ALLA MODULER</div>
+              <div id="modulesRail" class="railList"></div>
+            </div>
+          </aside>
+        </section>
+      </main>
+
+      <nav class="bottomNav" aria-label="Navigation (mobil)">
+        <a class="bottomItem" href="dashboard.html">
+          <img class="bottomIcon" src="images/home.svg" alt="" />
+          <span class="bottomLabel">Hem</span>
+        </a>
+
+        <a class="bottomItem is-active" href="modules.html" aria-current="page">
+          <img class="bottomIcon" src="images/moduler-active.svg" alt="" />
+          <span class="bottomLabel">Moduler</span>
+        </a>
+
+        <a class="bottomItem" href="./framsteg.html">
+          <img class="bottomIcon" src="images/framsteg.svg" alt="" />
+          <span class="bottomLabel">Framsteg</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+
+  <script type="module" src="js/modules.js"></script>
+</body>
+
+</html>
