@@ -42,11 +42,47 @@ async function getQuestions() {
 
   //filtrera modul och nivå tillfälligt
   const filtered = result.questions.filter(
-    (q) => q.module === "Juridik" && q.level_number === 1
+    (question) => question.module === "Juridik" && question.level_number === 1
   );
 
   console.log(filtered);
   return filtered;
 }
 
-getQuestions();
+let currentIndex = 0;
+let questions = [];
+
+async function startQuiz() {
+  questions = await getQuestions();
+
+  document.getElementById("quizTitle").textContent = "Juridik Nivå 1";
+  document.getElementById("qTotal").textContent = String(questions.length);
+
+  renderQuestion();
+  document.getElementById("nextBtn").addEventListener("click", goNext);
+}
+
+function renderQuestion() {
+  const question = questions[currentIndex];
+
+  document.getElementById("qIndex").textContent = String(currentIndex + 1);
+
+  document.getElementById("questionText").textContent = question.quiz_question;
+
+  document.getElementById("nextBtn").disabled = false;
+
+  const progressPercent = Math.round(
+    ((currentIndex + 1) / questions.length) * 100
+  );
+
+  document.getElementById("progressFill").style.width = progressPercent + "%";
+}
+
+function goNext() {
+  if (currentIndex < questions.length - 1) {
+    currentIndex++;
+    renderQuestion();
+  }
+}
+
+startQuiz();
