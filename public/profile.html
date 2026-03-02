@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="sv">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profil – Vuxenpoäng</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/profile.css" />
+</head>
+
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Sidomeny">
+      <div class="sidebarTop">
+        <a class="brand" href="index.html" aria-label="Gå till startsidan">
+          <img class="brandMark" src="images/Logo.svg" alt="Vuxenpoäng" />
+        </a>
+      </div>
+
+      <nav class="sideNav" aria-label="Navigation">
+        <a class="sideNavItem" href="dashboard.html">
+          <span class="sideNavIcon"><img src="images/home.svg" alt="" /></span>
+          <span>Översikt</span>
+        </a>
+
+        <a class="sideNavItem" href="modules.html">
+          <span class="sideNavIcon"><img src="images/moduler.svg" alt="" /></span>
+          <span>Moduler</span>
+        </a>
+
+        <a class="sideNavItem" href="framsteg.html">
+          <span class="sideNavIcon"><img src="images/framsteg.svg" alt="" /></span>
+          <span>Framsteg</span>
+        </a>
+
+        <a class="sideNavItem" href="prestationer.html">
+          <span class="sideNavIcon"><img src="images/watch.svg" alt="" /></span>
+          <span>Prestationer</span>
+        </a>
+      </nav>
+
+      <div class="sidebarFooter">
+        <a class="profileCard" href="profile.html" aria-current="page">
+          <img class="profileAvatar" src="images/profile-pic.png" alt="Profilbild" />
+          <div class="profileMeta">
+            <div class="profileName">Oskar O.</div>
+            <div class="profileSub">Nivå 4 • Grundare</div>
+          </div>
+          <div class="profileChevron" aria-hidden="true">›</div>
+        </a>
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar" aria-label="Toppmeny">
+        <div class="breadcrumb">
+          <a href="dashboard.html">Hem</a>
+          <span class="crumbSep">›</span>
+          <span class="crumbCurrent">Profil</span>
+        </div>
+
+        <div class="topbarRight">
+          <div class="pill">
+            <span class="pillIcon" aria-hidden="true">🔥</span>
+            <span class="pillText">3 dagar i rad</span>
+          </div>
+          <button class="iconBtn" type="button" aria-label="Notiser">
+            <span class="bellDot" aria-hidden="true"></span>
+            🔔
+          </button>
+        </div>
+      </header>
+
+      <header class="mobileTopbar" aria-label="Toppmeny mobil">
+        <a class="brand brand--mobile" href="index.html" aria-label="Gå till startsidan">
+          <img class="brandMark brandMark--mobile" src="images/Logo.svg" alt="Vuxenpoäng" />
+        </a>
+
+        <div class="mobileTopRight">
+          <div class="pill pill--soft" aria-label="Streak">
+            <span class="pillIcon" aria-hidden="true">🔥</span>
+            <span class="pillText">2</span>
+          </div>
+          <img class="avatar" src="images/profile-pic.png" alt="Profilbild" />
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="pageHeader" aria-label="Sidhuvud (mobil)">
+          <div class="backRow">
+            <a class="backBtn" href="dashboard.html" aria-label="Tillbaka">←</a>
+            <h1 class="h1">Profil</h1>
+          </div>
+        </section>
+
+        <section class="desktopHeader" aria-label="Hälsning (desktop)">
+          <div class="helloBlock">
+            <h2 class="helloTitle">Hej, Oskar! <span aria-hidden="true">👋</span></h2>
+            <p class="helloText">Dags att lära sig något nytt om hyresrätter idag.</p>
+          </div>
+
+          <div class="statsRow" aria-label="Statistik">
+            <div class="statCard">
+              <div class="statLabel">TOTALA POÄNG</div>
+              <div class="statValue">420</div>
+              <div class="statSub">Poäng</div>
+            </div>
+
+            <div class="statCard">
+              <div class="statLabel">NIVÅ</div>
+              <div class="statValue">4 <span class="statSmall">/10</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid" aria-label="Profil och sidopanel">
+          <section class="leftCol" aria-label="Profilinnehåll">
+            <section class="card profileMain" aria-label="Profilkort">
+              <div class="profileCenter">
+                <img class="profileHeroAvatar" src="images/profile-pic.png" alt="Profilbild" />
+                <div class="profileFullName">Oskar Oskarsson</div>
+                <div class="profileEmail">oskar.oskarsson@gmail.se</div>
+                <a class="profileEdit" href="#" role="button">Redigera profil</a>
+              </div>
+            </section>
+
+            <div class="sectionTitle">KONTO</div>
+            <section class="card listCard" aria-label="Konto">
+              <a class="rowItem" href="#">
+                <span class="rowLeft">
+                  <img class="rowIcon" src="images/lösenord.svg" alt="" />
+                  <span class="rowText">Byt lösenord</span>
+                </span>
+                <span class="rowChevron" aria-hidden="true">›</span>
+              </a>
+              <div class="rowDivider" aria-hidden="true"></div>
+              <a class="rowItem" href="#">
+                <span class="rowLeft">
+                  <img class="rowIcon" src="images/logout.svg" alt="" />
+                  <span class="rowText">Logga ut</span>
+                </span>
+                <span class="rowChevron" aria-hidden="true">›</span>
+              </a>
+            </section>
+
+            <div class="sectionTitle">INSTÄLLNINGAR</div>
+            <section class="card listCard" aria-label="Inställningar">
+              <div class="rowItem rowItem--switch">
+                <span class="rowLeft">
+                  <img class="rowIcon" src="images/notiser.svg" alt="" />
+                  <span class="rowText">Notiser</span>
+                </span>
+                <button class="switch is-on" type="button" aria-label="Notiser på/av">
+                  <span class="switchKnob" aria-hidden="true"></span>
+                </button>
+              </div>
+
+              <div class="rowDivider" aria-hidden="true"></div>
+
+              <div class="rowItem rowItem--switch">
+                <span class="rowLeft">
+                  <img class="rowIcon" src="images/ljud.svg" alt="" />
+                  <span class="rowText">Ljud i quiz</span>
+                </span>
+                <button class="switch" type="button" aria-label="Ljud i quiz på/av">
+                  <span class="switchKnob" aria-hidden="true"></span>
+                </button>
+              </div>
+
+              <div class="rowDivider" aria-hidden="true"></div>
+
+              <a class="rowItem" href="#">
+                <span class="rowLeft">
+                  <img class="rowIcon" src="images/språk.svg" alt="" />
+                  <span class="rowTextWrap">
+                    <span class="rowText">Språk</span>
+                    <span class="rowSub">Svenska</span>
+                  </span>
+                </span>
+                <span class="rowChevron" aria-hidden="true">›</span>
+              </a>
+            </section>
+
+            <div class="sectionTitle">DATA &amp; SEKRETESS</div>
+            <section class="card listCard" aria-label="Data och sekretess">
+              <a class="rowItem rowItem--danger" href="#">
+                <span class="rowLeft">
+                  <img class="rowIcon" src="images/radera.svg" alt="" />
+                  <span class="rowText">Radera konto</span>
+                </span>
+                <span class="rowChevron danger" aria-hidden="true">›</span>
+              </a>
+            </section>
+          </section>
+
+          <aside class="rightRail" aria-label="Sidopanel">
+            <div class="weekCard">
+              <div class="weekTop">
+                <div class="weekTitle">Veckoaktivitet</div>
+                <img class="graphIcon" src="images/graph.svg" alt="" />
+              </div>
+
+              <div class="weekChart" aria-hidden="true">
+                <div class="barRow">
+                  <span class="bar b1"></span>
+                  <span class="bar b2"></span>
+                  <span class="bar b3 is-active"></span>
+                  <span class="bar b4 is-active"></span>
+                  <span class="bar b5"></span>
+                  <span class="bar b6"></span>
+                  <span class="bar b7"></span>
+                </div>
+                <div class="dayRow">
+                  <span>M</span><span>T</span><span class="is-bold">O</span><span
+                    class="is-bold">T</span><span>F</span><span>L</span><span>S</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="railCard">
+              <div class="railTitle">ALLA MODULER</div>
+              <div class="railList">
+                <div class="railItem">
+                  <div class="railIcon railIcon--blue">
+                    <img src="images/privatekonomi.svg" alt="" />
+                  </div>
+                  <div class="railMeta">
+                    <div class="railName">Privatekonomi</div>
+                    <div class="railDesc">Hantera din ekonomi som ett proffs</div>
+                  </div>
+                  <div class="railCount">1/8</div>
+                </div>
+
+                <div class="railItem">
+                  <div class="railIcon railIcon--yellow">
+                    <img src="images/hus.svg" alt="" />
+                  </div>
+                  <div class="railMeta">
+                    <div class="railName">Hushåll</div>
+                    <div class="railDesc">Tvätt, städning och vardagstips</div>
+                  </div>
+                  <div class="railCount">0/8</div>
+                </div>
+
+                <div class="railItem is-locked">
+                  <div class="railIcon railIcon--gray" aria-hidden="true">🔒</div>
+                  <div class="railMeta">
+                    <div class="railName">Matlagning</div>
+                    <div class="railDesc">Låses upp vid nivå 5</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+      </main>
+
+      <nav class="bottomNav" aria-label="Navigation (mobil)">
+        <a class="bottomItem" href="dashboard.html">
+          <img class="bottomIcon" src="images/home.svg" alt="" />
+          <span class="bottomLabel">Hem</span>
+        </a>
+
+        <a class="bottomItem" href="modules.html">
+          <img class="bottomIcon" src="images/moduler.svg" alt="" />
+          <span class="bottomLabel">Moduler</span>
+        </a>
+
+        <a class="bottomItem" href="framsteg.html">
+          <img class="bottomIcon" src="images/framsteg.svg" alt="" />
+          <span class="bottomLabel">Framsteg</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+</body>
+
+</html>
