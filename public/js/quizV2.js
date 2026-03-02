@@ -1,3 +1,20 @@
+const answers = document.querySelector("#answers")
+
+async function svarsalternativ(params) {
+  await fetch("http://localhost:3000/api/ekonomiquiz")
+    .then((response) => response.json())
+    .then((result) => {
+      console.log(result);
+      console.log(result[0].svarsalternativ1[0]);
+      answers.children[0].innerHTML = result[0].svarsalternativ1[0];
+      answers.children[1].innerHTML = result[0].svarsalternativ1[1];
+      answers.children[2].innerHTML = result[0].svarsalternativ1[2];
+      answers.children[3].innerHTML = result[0].svarsalternativ1[3];
+    });
+}
+
+svarsalternativ();
+
 async function test(params) {
   await fetch("http://localhost:3000/api/ekonomiquiz")
     .then((response) => response.json())
