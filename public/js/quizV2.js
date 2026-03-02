@@ -1,7 +1,7 @@
 const answers = document.querySelector("#answers")
 
 async function svarsalternativ(params) {
-  await fetch("http://localhost:3000/api/ekonomiquiz")
+  await fetch("http://localhost:3000/api/juridikquiz")
     .then((response) => response.json())
     .then((result) => {
       console.log(result);
