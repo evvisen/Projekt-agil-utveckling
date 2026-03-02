@@ -13,7 +13,8 @@ export async function getQuestions(req: Request, res: Response) {
       `SELECT m.name AS module, ml.level_number, quiz_questions_id, quiz_question, correct_option
 FROM quiz_questions qq
 INNER JOIN modules m on qq.module_id = m.module_id
-INNER JOIN module_levels ml on qq.module_level_id = ml.module_level_id;`
+INNER JOIN module_levels ml on qq.module_level_id = ml.module_level_id
+ORDER BY quiz_questions_id ASC;`
     );
 
     return res.status(200).json({

@@ -36,3 +36,17 @@ test2();
     })*/
 
 //Evelina :)
+async function getQuestions() {
+  const response = await fetch("http://localhost:3000/api/questions");
+  const result = await response.json();
+
+  //filtrera modul och nivå tillfälligt
+  const filtered = result.questions.filter(
+    (q) => q.module === "Juridik" && q.level_number === 1
+  );
+
+  console.log(filtered);
+  return filtered;
+}
+
+getQuestions();
