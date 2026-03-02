@@ -6,10 +6,24 @@ async function svarsalternativ(params) {
     .then((result) => {
       console.log(result);
       console.log(result[0].svarsalternativ1[0]);
-      answers.children[0].innerHTML = result[0].svarsalternativ1[0];
-      answers.children[1].innerHTML = result[0].svarsalternativ1[1];
-      answers.children[2].innerHTML = result[0].svarsalternativ1[2];
-      answers.children[3].innerHTML = result[0].svarsalternativ1[3];
+      if (currentIndex === 0) {
+        answers.children[0].innerHTML = result[0].svarsalternativ1[0];
+        answers.children[1].innerHTML = result[0].svarsalternativ1[1];
+        answers.children[2].innerHTML = result[0].svarsalternativ1[2];
+        answers.children[3].innerHTML = result[0].svarsalternativ1[3];
+      }
+      if (currentIndex === 1) {
+        answers.children[0].innerHTML = result[0].svarsalternativ2[0];
+        answers.children[1].innerHTML = result[0].svarsalternativ2[1];
+        answers.children[2].innerHTML = result[0].svarsalternativ2[2];
+        answers.children[3].innerHTML = result[0].svarsalternativ2[3];
+      }
+      if (currentIndex === 2) {
+        answers.children[0].innerHTML = result[0].svarsalternativ3[0];
+        answers.children[1].innerHTML = result[0].svarsalternativ3[1];
+        answers.children[2].innerHTML = result[0].svarsalternativ3[2];
+        answers.children[3].innerHTML = result[0].svarsalternativ3[3];
+      }
     });
 }
 
@@ -99,6 +113,7 @@ function goNext() {
   if (currentIndex < questions.length - 1) {
     currentIndex++;
     renderQuestion();
+    svarsalternativ();
   }
 }
 
