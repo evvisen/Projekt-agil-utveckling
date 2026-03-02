@@ -16,12 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(cors());
 
-// //tillfällig test mot insomnia
-// app.post("/test-register", async (req, res) => {
-//     const { username, password } = req.body;
-//     const result = await registerUser(username, password)
-//     res.json(result)
-// });
+
 
 import authRoutes from "./routes/authRoutes.js";
 app.use("/api", authRoutes);
