@@ -1,5 +1,4 @@
 import { connectDB } from "../config/sql.js";
-import type { RequestHandler } from "express";
 import type { Request, Response } from "express";
 
 //hämta moduler
