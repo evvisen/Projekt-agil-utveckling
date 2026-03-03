@@ -32,8 +32,8 @@ app.use("/api", questionRoutes)
 
 
 async function startServer() {
-    const db = await connectDB();
-    await database();
-    app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+  const db = await connectDB();
+  await database();
+  app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 }
 startServer();
