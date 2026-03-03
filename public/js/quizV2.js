@@ -1,30 +1,47 @@
 const answerText = document.querySelectorAll(".answertext");
 console.log(answerText[0]);
 
+const buttonValue = document.querySelectorAll(".answerBtn")
 
 async function svarsalternativ(params) {
   await fetch("http://localhost:3000/api/juridikquiz")
     .then((response) => response.json())
     .then((result) => {
       console.log(result);
-      console.log(result[0].svarsalternativ1[0]);
+      console.log(result[0].rätt_svar1[0]);
       if (currentIndex === 0) {
         answerText[0].textContent = result[0].svarsalternativ1[0];
         answerText[1].textContent = result[0].svarsalternativ1[1];
         answerText[2].textContent = result[0].svarsalternativ1[2];
         answerText[3].textContent = result[0].svarsalternativ1[3];
+
+        buttonValue[0].setAttribute("value", result[0].rätt_svar1[0]);
+        buttonValue[1].setAttribute("value", result[0].rätt_svar1[1]);
+        buttonValue[2].setAttribute("value", result[0].rätt_svar1[2]);
+        buttonValue[3].setAttribute("value", result[0].rätt_svar1[3]);
+
       }
       if (currentIndex === 1) {
         answerText[0].textContent = result[0].svarsalternativ2[0];
         answerText[1].textContent = result[0].svarsalternativ2[1];
         answerText[2].textContent = result[0].svarsalternativ2[2];
         answerText[3].textContent = result[0].svarsalternativ2[3];
+
+        buttonValue[0].setAttribute("value", result[0].rätt_svar2[0]);
+        buttonValue[1].setAttribute("value", result[0].rätt_svar2[1]);
+        buttonValue[2].setAttribute("value", result[0].rätt_svar2[2]);
+        buttonValue[3].setAttribute("value", result[0].rätt_svar2[3]);
       }
       if (currentIndex === 2) {
         answerText[0].textContent = result[0].svarsalternativ3[0];
         answerText[1].textContent = result[0].svarsalternativ3[1];
         answerText[2].textContent = result[0].svarsalternativ3[2];
         answerText[3].textContent = result[0].svarsalternativ3[3];
+
+        buttonValue[0].setAttribute("value", result[0].rätt_svar3[0]);
+        buttonValue[1].setAttribute("value", result[0].rätt_svar3[1]);
+        buttonValue[2].setAttribute("value", result[0].rätt_svar3[2]);
+        buttonValue[3].setAttribute("value", result[0].rätt_svar3[3]);
       }
     });
 }
@@ -33,6 +50,17 @@ async function svarsalternativ(params) {
 // Använd slice() för att ta bort bokstäverna från svarsalternativen 
 
 svarsalternativ();
+
+buttonValue.forEach(buttonValue => {
+  buttonValue.addEventListener("click", () => {
+    if (buttonValue.getAttribute("value") === "true") {
+      console.log("Du har rätt");
+    }
+    if (buttonValue.getAttribute("value") === "false") {
+      console.log("Du har fel");
+    }
+  })
+})
 
 async function getQuestions() {
   const response = await fetch("http://localhost:3000/api/questions");

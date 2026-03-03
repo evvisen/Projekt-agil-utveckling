@@ -95,10 +95,23 @@ db.juridikquiz.insertMany([
           "Att staten ansvarar för alla skador",
           "Att ingen kan hållas ansvarig för misstag"
           ],
-        rätt_svar: [
-          "svarsalternativ1: B",
-          "svarsalternativ2: C",
-          "svarsalternativ3: B"
+        rätt_svar1: [
+          "false",
+          "true",
+          "false",
+          "false"
+          ],
+       rätt_svar2: [
+            "false",
+            "false",
+            "true",
+            "false"
+          ],
+       rätt_svar3: [
+          "false",
+          "true",
+          "false",
+          "false"
           ]
   },
   {
@@ -127,10 +140,23 @@ db.juridikquiz.insertMany([
         "Att rätten att väcka talan eller döma för brott upphör efter viss tid",
         "Att domstolen tar över ärendet direkt"
         ],
-    rätt_svar: [
-          "svarsalternativ1: B",
-          "svarsalternativ2: B",
-          "svarsalternativ3: C"
+    rätt_svar1: [
+          "false",
+          "true",
+          "false",
+          "false"
+          ],
+    rätt_svar2: [
+          "false",
+          "true",
+          "false",
+          "false"
+          ],
+    rätt_svar3: [
+            "false",
+            "false",
+            "true",
+            "false"
           ]
   }
 ])
