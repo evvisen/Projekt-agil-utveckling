@@ -1,136 +1,83 @@
-const API = "http://localhost:3000/api/modules";
-const res = await fetch(API);
+const API_URL = 'http://localhost:3000/api/modules';
 
-function iconForModule(name) {
-  const n = String(name || "").toLowerCase();
+document.addEventListener('DOMContentLoaded', () => {
+    fetchModules();
+});
 
-  if (n.includes("jurid")) {
-    return { src: "./images/Juridik.svg", bg: "rgba(59,130,246,.10)" };
-  }
-  if (n.includes("privat") || n.includes("ekonomi")) {
-    return { src: "./images/privatekonomi.svg", bg: "rgba(239,68,68,.10)" };
-  }
-  if (n.includes("hush")) {
-    return { src: "./images/hus.svg", bg: "rgba(34,197,94,.10)" };
-  }
-  if (n.includes("jobb") || n.includes("lön")) {
-    return { src: "./images/hus.svg", bg: "rgba(245,158,11,.14)" };
-  }
+async function fetchModules() {
+    const gridContainer = document.getElementById('modulesGrid');
 
-  return { src: "./images/hus.svg", bg: "rgba(124,58,237,.10)" };
-}
+    try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
 
-function el(tag, attrs = {}, children = []) {
-  const node = document.createElement(tag);
-  Object.entries(attrs).forEach(([k, v]) => {
-    if (k === "class") node.className = v;
-    else if (k === "text") node.textContent = v;
-    else node.setAttribute(k, String(v));
-  });
-  children.forEach((c) => node.appendChild(c));
-  return node;
-}
-
-function renderError(gridEl) {
-  gridEl.innerHTML = "";
-  gridEl.appendChild(
-    el("div", { class: "errorCard" }, [
-      el("h3", { class: "errorTitle", text: "Kunde inte hämta moduler" }),
-      el("p", { class: "errorText", text: "Starta backend och testa igen." }),
-    ])
-  );
+        if (data.success && data.modules) {
+            renderModules(data.modules);
+        } else {
+            console.error("Backend error:", data.message);
+        }
+    } catch (error) {
+        console.error("Fetch failed:", error);
+    }
 }
 
 function renderModules(modules) {
-  const grid = document.getElementById("modulesGrid");
-  const rail = document.getElementById("modulesRail");
-  if (!grid || !rail) return;
+    const gridContainer = document.getElementById('modulesGrid');
+    const railContainer = document.getElementById('modulesRail');
 
-  grid.innerHTML = "";
-  rail.innerHTML = "";
+    gridContainer.innerHTML = '';
+    railContainer.innerHTML = '';
 
-  modules.forEach((m, idx) => {
-    const title = m?.name ?? `Modul ${idx + 1}`;
-    const desc = m?.description ?? "Beskrivning saknas";
-    const levelsDone = Number(m?.levelsDone ?? m?.completedLevels ?? (idx === 0 ? 2 : idx === 1 ? 1 : 0));
-    const totalLevels = Number(m?.totalLevels ?? m?.levelsTotal ?? 8);
-    const nextLevel = Number(m?.nextLevel ?? Math.min(totalLevels, Math.max(1, levelsDone + 1)));
-    const eta = m?.etaMin ?? (idx === 0 ? 4 : idx === 1 ? 6 : 5);
+    modules.forEach(module => {
+        let iconName = 'placeholder.svg';
 
-    const pct = totalLevels > 0 ? Math.max(0, Math.min(100, Math.round((levelsDone / totalLevels) * 100))) : 0;
+        const nameLower = module.name.toLowerCase();
+        if (nameLower.includes('juridik')) {
+            iconName = 'juridik.svg';
+        } else if (nameLower.includes('privatekonomi')) {
+            iconName = 'privatekonomi.svg';
+        }
 
-    const icon = iconForModule(title);
+        const iconPath = `images/${iconName}`;
 
-    const card = el("article", { class: "moduleCard" }, [
-      el("div", { class: "cardTop" }, [
-        el("div", { class: "iconTile", style: `background:${icon.bg}` }, [
-          el("img", { src: icon.src, alt: "" }),
-        ]),
-        el("div", {}, [
-          el("h3", { class: "cardTitle", text: title }),
-          el("p", { class: "cardDesc", text: desc }),
-        ]),
-      ]),
+        const cardHtml = `
+            <article class="moduleCard">
+                <div class="cardTop">
+                    <div class="iconTile" style="background: rgba(124, 58, 237, 0.1);">
+                        <img src="${iconPath}" alt="${module.name}" style="width: 34px; height: 34px;">
+                    </div>
+                    <div>
+                        <h3 class="cardTitle">${module.name}</h3>
+                        <p class="cardDesc">${module.description}</p>
+                    </div>
+                </div>
+                <div class="cardMeta">
+                    <div class="levelCount">
+                        <strong>1</strong><span>/10</span>
+                    </div>
+                    <div class="progressTrack">
+                        <div class="progressFill" style="width: 20%;"></div>
+                    </div>
+                </div>
+                <button class="cardBtn" onclick="window.location.href='quiz.html?id=${module.module_id}'">
+                    Fortsätt kurs
+                </button>
+            </article>
+        `;
+        gridContainer.insertAdjacentHTML('beforeend', cardHtml);
 
-      el("div", { class: "cardMeta" }, [
-        el("div", { class: "levelCount" }, [
-          el("strong", { text: `${levelsDone}/${totalLevels}` }),
-          el("span", { text: "nivåer" }),
-        ]),
-        el("div", { class: "progressTrack", role: "progressbar", "aria-valuemin": "0", "aria-valuemax": "100", "aria-valuenow": String(pct) }, [
-          el("div", { class: "progressFill", style: `width:${pct}%` }),
-        ]),
-      ]),
-
-      el("div", { class: "cardBottom" }, [
-        el("div", { class: "nextLevel", text: `Nästa: Nivå ${nextLevel}` }),
-        el("div", { class: "pillSmall", text: `${eta} min` }),
-      ]),
-
-      el("button", { class: "cardBtn", type: "button" }, []),
-    ]);
-
-    card.querySelector(".cardBtn").textContent = "Öppna modul";
-    card.querySelector(".cardBtn").addEventListener("click", () => {
-      window.location.href = "./module-path.html";
+        const railHtml = `
+            <div class="railItem">
+                <div class="railIcon" style="background: #F8FAFC;">
+                    <img src="${iconPath}" alt="" style="width: 24px; height: 24px;">
+                </div>
+                <div>
+                    <div class="railName">${module.name}</div>
+                    <div class="railDesc">${module.description.substring(0, 25)}...</div>
+                </div>
+                <div class="railMeta">›</div>
+            </div>
+        `;
+        railContainer.insertAdjacentHTML('beforeend', railHtml);
     });
-
-    grid.appendChild(card);
-
-    const railItem = el("div", { class: "railItem" }, [
-      el("div", { class: "railIcon", style: `background:${icon.bg}` }, [
-        el("img", { src: icon.src, alt: "" }),
-      ]),
-      el("div", {}, [
-        el("div", { class: "railName", text: title }),
-        el("div", { class: "railDesc", text: desc.length > 34 ? desc.slice(0, 34) + "…" : desc }),
-      ]),
-      el("div", { class: "railMeta", text: `${levelsDone}/${totalLevels}` }),
-    ]);
-
-    rail.appendChild(railItem);
-  });
 }
-
-async function init() {
-  const grid = document.getElementById("modulesGrid");
-  if (!grid) return;
-
-  try {
-    const res = await fetch(API_URL, { headers: { Accept: "application/json" } });
-    if (!res.ok) throw new Error("Bad response");
-
-    const data = await res.json();
-
-    const modules = Array.isArray(data) ? data : Array.isArray(data?.modules) ? data.modules : [];
-    if (!modules.length) throw new Error("Empty modules");
-
-    renderModules(modules);
-  } catch (_) {
-    renderError(grid);
-    const rail = document.getElementById("modulesRail");
-    if (rail) rail.innerHTML = "";
-  }
-}
-
-window.addEventListener("DOMContentLoaded", init);

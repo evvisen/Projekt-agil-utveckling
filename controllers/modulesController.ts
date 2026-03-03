@@ -3,29 +3,21 @@ import type { Request, Response } from "express";
 
 //hämta moduler
 export async function getModules(req: Request, res: Response) {
-
   try {
-
     const db = await connectDB();
 
-    const [modules] = await db.execute(
-      `SELECT * FROM modules;`
-    );
+    const [modules] = await db.execute(`SELECT * FROM modules;`);
 
     return res.status(200).json({
       success: true,
-      modules: modules
+      modules: modules,
     });
-
   } catch (err: any) {
-
     console.error(err);
 
     return res.status(500).json({
       success: false,
-      message: "Något gick fel"
+      message: "Något gick fel",
     });
-
   }
-
-};
+}
