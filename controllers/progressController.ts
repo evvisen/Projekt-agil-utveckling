@@ -63,3 +63,29 @@ WHERE user_id =? AND module_level_id=?;`,
     });
   }
 }
+
+export async function getUserProgress (req: Request, res: Response) {
+
+  const userId = req.params.user_id;
+  const moduleId= req.params.module_id;
+
+  try {
+    const db= await connectDB();
+
+    const [rows]: any = await db.execute(
+      `SELECT m.name AS module, ml.level_number, ml.module_level_id, ump.status
+      FROM user_module_progress ump
+      INNER JOIN module_levels ml ON ump.module_level_id = ml.module_level_id INNER JOIN modules m ON ml.module_id = m.module_id
+      WHERE ump.user_id = ? AND ml.module_id = ?
+      ORDER BY ml.level_number ASC`,
+      [userId, moduleId]
+    );
+
+    return res.status(200).json({ success: true, levels: rows });
+
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ success: false, message: "Något gick fel" });
+  }
+
+}

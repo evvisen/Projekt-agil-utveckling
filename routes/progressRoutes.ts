@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { completeAndUnlockNext} from "../controllers/progressController.js";
+import { completeAndUnlockNext, getUserProgress} from "../controllers/progressController.js";
 
 const router = Router();
 
 router.put('/progress', completeAndUnlockNext)
-
+router.get('/progress/:user_id/:module_id', getUserProgress)
 
 export default router;
