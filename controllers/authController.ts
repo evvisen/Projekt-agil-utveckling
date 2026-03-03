@@ -69,6 +69,26 @@ export async function registerUser(
         //hämta den nya användarens ID
         const userId = (result as any).insertId;
 
+        //hämta alla module_levels
+        const [levels]: any = await db.execute(
+            `SELECT module_level_id, module_id, level_number FROM module_levels`
+        );
+
+        //skapa progress: level_number 1 = unlocked, resten locked
+        for (let i=0; i < levels.length; i++){
+            let status = 'locked';
+            if (levels[i].level_number === 1){
+                status= 'unlocked';
+            }
+
+            await db.execute(
+            `INSERT INTO user_module_progress (user_id, module_level_id, status)VALUES (?, ?, ?)`, [userId, levels[i].module_level_id, status]
+            );
+        }
+
+
+
+
         const token = jwt.sign(
             { user_id: userId, username },
             JWT_KEY,
