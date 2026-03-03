@@ -1,4 +1,6 @@
-const answers = document.querySelector("#answers");
+const answerText = document.querySelectorAll(".answertext");
+console.log(answerText[0]);
+
 
 async function svarsalternativ(params) {
   await fetch("http://localhost:3000/api/juridikquiz")
@@ -7,25 +9,28 @@ async function svarsalternativ(params) {
       console.log(result);
       console.log(result[0].svarsalternativ1[0]);
       if (currentIndex === 0) {
-        answers.children[0].innerHTML = result[0].svarsalternativ1[0];
-        answers.children[1].innerHTML = result[0].svarsalternativ1[1];
-        answers.children[2].innerHTML = result[0].svarsalternativ1[2];
-        answers.children[3].innerHTML = result[0].svarsalternativ1[3];
+        answerText[0].textContent = result[0].svarsalternativ1[0];
+        answerText[1].textContent = result[0].svarsalternativ1[1];
+        answerText[2].textContent = result[0].svarsalternativ1[2];
+        answerText[3].textContent = result[0].svarsalternativ1[3];
       }
       if (currentIndex === 1) {
-        answers.children[0].innerHTML = result[0].svarsalternativ2[0];
-        answers.children[1].innerHTML = result[0].svarsalternativ2[1];
-        answers.children[2].innerHTML = result[0].svarsalternativ2[2];
-        answers.children[3].innerHTML = result[0].svarsalternativ2[3];
+        answerText[0].textContent = result[0].svarsalternativ2[0];
+        answerText[1].textContent = result[0].svarsalternativ2[1];
+        answerText[2].textContent = result[0].svarsalternativ2[2];
+        answerText[3].textContent = result[0].svarsalternativ2[3];
       }
       if (currentIndex === 2) {
-        answers.children[0].innerHTML = result[0].svarsalternativ3[0];
-        answers.children[1].innerHTML = result[0].svarsalternativ3[1];
-        answers.children[2].innerHTML = result[0].svarsalternativ3[2];
-        answers.children[3].innerHTML = result[0].svarsalternativ3[3];
+        answerText[0].textContent = result[0].svarsalternativ3[0];
+        answerText[1].textContent = result[0].svarsalternativ3[1];
+        answerText[2].textContent = result[0].svarsalternativ3[2];
+        answerText[3].textContent = result[0].svarsalternativ3[3];
       }
     });
 }
+
+//Gör två element inne i knappen där ena representerar badgen och den andra texten.
+// Använd slice() för att ta bort bokstäverna från svarsalternativen 
 
 svarsalternativ();
 
