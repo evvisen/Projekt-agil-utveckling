@@ -2,3 +2,6 @@ Här kan vi lägga in ex på JSON-data för att testa i insomnia osv
 
 ex. visa users i insomnia
 http://localhost:3000/users
+
+länk för att starta på skapakonto sidan:
+http://localhost:3000/index.html
