@@ -57,10 +57,6 @@ buttonValue.forEach(buttonValue => {
     if (buttonValue.getAttribute("value") === "true") {
       console.log("Du har rätt");
       buttonValue.classList.add("is-correct");
-      const tag = document.createElement("span");
-      tag.className = "correctTag";
-      tag.textContent = "Rätt svar";
-      buttonValue.appendChild(tag);
       allAnswerbuttons.forEach(allAnswerbuttons => {
         allAnswerbuttons.disabled = true;
       })
@@ -122,6 +118,11 @@ function goNext() {
     currentIndex++;
     renderQuestion();
     svarsalternativ();
+    allAnswerbuttons.forEach(allAnswerbuttons => {
+      allAnswerbuttons.disabled = false;
+      allAnswerbuttons.classList.remove("is-wrong");
+      allAnswerbuttons.classList.remove("is-correct");
+    })
   }
 }
 
