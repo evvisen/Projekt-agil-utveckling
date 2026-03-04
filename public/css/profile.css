@@ -194,7 +194,6 @@ img {
   line-height: 20px;
 }
 
-/* nav shared */
 .nav__item {
   text-decoration: none;
   display: flex;
@@ -248,13 +247,11 @@ img {
   font-weight: 700;
 }
 
-/* sidebar + right hidden on mobile */
 .sidebar,
 .right {
   display: none;
 }
 
-/* ---------- profile only ---------- */
 .profile-main {
   padding: 18px;
   border-radius: var(--r24);
@@ -400,13 +397,12 @@ img {
   justify-content: flex-end;
 }
 
-/* user card link style */
 .user--link {
   text-decoration: none;
   color: inherit;
 }
 
-/* ---------------------- DESKTOP ---------------------- */
+/* - DESKTOP - */
 @media (min-width: 1024px) {
 
   .brand__logo {
@@ -557,7 +553,6 @@ img {
     display: none;
   }
 
-  /* right rail blocks (same as dashboard) */
   .stats-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -659,7 +654,6 @@ img {
     margin: 10px 2px 12px;
   }
 
-  /* ✅ THIS is what makes "ALLA MODULER" visible */
   .moditem {
     padding: 14px 16px;
     margin-bottom: 12px;

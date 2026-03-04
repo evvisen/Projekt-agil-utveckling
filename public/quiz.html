@@ -14,68 +14,89 @@
 </head>
 
 <body>
-  <div class="quizApp" id="quizApp">
-    <header class="quizTop">
-      <div class="quizBrand">
-        <img class="quizLogo" src="images/Logo.svg" alt="Vuxenpoäng" />
-      </div>
+  <div class="app" id="quizApp">
 
-      <div class="quizTopRight">
-        <div class="streakPill" aria-label="Streak">
-          <span aria-hidden="true">🔥</span>
-          <strong id="streakCount">2</strong>
+    <header class="topbar">
+      <div class="topbar__left">
+        <div class="brand brand--topbar">
+          <img class="brand__logo" src="images/Logo.svg" alt="Vuxenpoäng" />
         </div>
 
-        <a class="avatar" href="images/profile-pic.png" aria-label="Profil">
-          <span class="avatarImg" aria-hidden="true"></span>
-        </a>
+        <div class="breadcrumbs" aria-label="Brödsmulor">
+          <span class="breadcrumbs__muted">Modul</span>
+          <span class="breadcrumbs__sep">›</span>
+          <span class="breadcrumbs__current" id="quizTitle">Juridik • Nivå 1</span>
+        </div>
+      </div>
+
+      <div class="topbar__right">
+        <div class="streak" aria-label="Streak">
+          <img class="streak__icon" src="images/flame.svg" alt="" />
+          <span class="streak__count" id="streakCount">2</span>
+        </div>
+
+        <button class="icon-btn" type="button" aria-label="Notiser">
+          <img src="images/notiser.svg" alt="" />
+        </button>
+
+        <button class="avatar" type="button" aria-label="Profil">
+          <img class="avatar__img" src="images/profile-pic.png" alt="Profilbild" />
+        </button>
       </div>
     </header>
 
-    <main class="quizMain">
-      <section class="quizHeader">
-        <button class="closeBtn" id="closeBtn" aria-label="Avsluta quiz">✕</button>
+    <main class="content">
+      <section class="quiz">
 
-        <div class="quizHeaderText">
-          <h1 id="quizTitle">Juridik • Nivå 1</h1>
-          <p class="subText">Fråga <span id="qIndex">1</span> av <span id="qTotal">5</span></p>
+        <header class="quiz__head">
+          <button class="icon-btn quiz__close" id="closeBtn" type="button" aria-label="Avsluta quiz">
+            ✕
+          </button>
 
-          <div class="progressBar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-            <div class="progressFill" id="progressFill" style="width: 0%"></div>
+          <div class="quiz__meta">
+            <p class="quiz__sub">
+              Fråga <span id="qIndex">1</span> av <span id="qTotal">5</span>
+            </p>
+
+            <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress__bar" id="progressFill" style="width: 0%"></div>
+            </div>
           </div>
-        </div>
-      </section>
+        </header>
 
-      <section class="quizBody">
-        <h2 class="question" id="questionText"></h2>
-        <div class="answers" id="answers">
-          <button class="answerBtn"></button>
-          <button class="answerBtn"></button>
-          <button class="answerBtn"></button>
-          <button class="answerBtn"></button>
-        </div>
+        <section class="quiz__body">
+          <h2 class="quiz__question" id="questionText"></h2>
 
-        <div class="footerRow">
-          <button class="nextBtn" id="nextBtn" disabled>Nästa fråga</button>
-        </div>
+          <div class="answers" id="answers">
+            <button class="answerBtn" type="button" data-answer-index="0"></button>
+            <button class="answerBtn" type="button" data-answer-index="1"></button>
+            <button class="answerBtn" type="button" data-answer-index="2"></button>
+            <button class="answerBtn" type="button" data-answer-index="3"></button>
+          </div>
+
+          <div class="quiz__footer">
+            <button class="btn-next" id="nextBtn" type="button" disabled>Nästa fråga</button>
+          </div>
+        </section>
+
       </section>
     </main>
   </div>
 
   <section class="overlay" id="feedbackOverlay" aria-hidden="true">
-    <div class="overlayBackdrop" id="overlayBackdrop"></div>
+    <div class="overlay__backdrop" id="overlayBackdrop"></div>
 
     <div class="sheet" role="dialog" aria-modal="true" aria-label="Feedback">
-      <div class="sheetHandle" aria-hidden="true"></div>
+      <div class="sheet__handle" aria-hidden="true"></div>
 
-      <div class="feedbackTop">
-        <span class="feedbackPill" id="feedbackPill">Rätt svar</span>
+      <div class="sheet__top">
+        <span class="sheet__pill" id="feedbackPill">Rätt svar</span>
       </div>
 
-      <h3 class="feedbackTitle" id="feedbackTitle">Bra jobbat!</h3>
-      <p class="feedbackText" id="feedbackText"></p>
+      <h3 class="sheet__title" id="feedbackTitle">Bra jobbat!</h3>
+      <p class="sheet__text" id="feedbackText"></p>
 
-      <button class="sheetCta" id="feedbackCta">Fortsätt</button>
+      <button class="sheet__cta" id="feedbackCta" type="button">Fortsätt</button>
     </div>
   </section>
 
