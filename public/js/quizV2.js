@@ -2,6 +2,7 @@ const answerText = document.querySelectorAll(".answertext");
 console.log(answerText[0]);
 
 const buttonValue = document.querySelectorAll(".answerBtn")
+const allAnswerbuttons = document.querySelectorAll(".answerBtn");
 
 async function svarsalternativ(params) {
   await fetch("http://localhost:3000/api/juridikquiz")
@@ -55,9 +56,21 @@ buttonValue.forEach(buttonValue => {
   buttonValue.addEventListener("click", () => {
     if (buttonValue.getAttribute("value") === "true") {
       console.log("Du har rätt");
+      buttonValue.classList.add("is-correct");
+      const tag = document.createElement("span");
+      tag.className = "correctTag";
+      tag.textContent = "Rätt svar";
+      buttonValue.appendChild(tag);
+      allAnswerbuttons.forEach(allAnswerbuttons => {
+        allAnswerbuttons.disabled = true;
+      })
     }
     if (buttonValue.getAttribute("value") === "false") {
       console.log("Du har fel");
+      buttonValue.classList.add("is-wrong");
+      allAnswerbuttons.forEach(allAnswerbuttons => {
+        allAnswerbuttons.disabled = true;
+      })
     }
   })
 })
