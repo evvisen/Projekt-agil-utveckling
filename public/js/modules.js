@@ -1,136 +1,133 @@
-const API = "http://localhost:3000/api/modules";
-const res = await fetch(API);
+const API_URL = "http://localhost:3000/api/modules";
 
-function iconForModule(name) {
-  const n = String(name || "").toLowerCase();
+const userNameElement = document.querySelector("[data-user-name]");
+const userMetaElement = document.querySelector("[data-user-meta]");
+const firstNameElement = document.querySelector("[data-first-name]");
+const streakElement = document.querySelector("[data-streak]");
+const totalPointsElement = document.querySelector("[data-total-points]");
+const levelElement = document.querySelector("[data-level]");
 
-  if (n.includes("jurid")) {
-    return { src: "./images/Juridik.svg", bg: "rgba(59,130,246,.10)" };
-  }
-  if (n.includes("privat") || n.includes("ekonomi")) {
-    return { src: "./images/privatekonomi.svg", bg: "rgba(239,68,68,.10)" };
-  }
-  if (n.includes("hush")) {
-    return { src: "./images/hus.svg", bg: "rgba(34,197,94,.10)" };
-  }
-  if (n.includes("jobb") || n.includes("lön")) {
-    return { src: "./images/hus.svg", bg: "rgba(245,158,11,.14)" };
-  }
+const modulesGridElement = document.getElementById("modulesGrid");
+const modulesRailElement = document.getElementById("modulesRail");
 
-  return { src: "./images/hus.svg", bg: "rgba(124,58,237,.10)" };
+function updatePageUI(data) {
+  if (firstNameElement) firstNameElement.textContent = data.firstName || "—";
+  if (userNameElement) userNameElement.textContent = data.userName || "—";
+  if (userMetaElement) userMetaElement.textContent = data.userMeta || "—";
+  if (streakElement) streakElement.textContent = data.streakText || "—";
+
+  if (totalPointsElement) totalPointsElement.textContent = String(data.totalPoints || 0);
+  if (levelElement) levelElement.textContent = String(data.level || 0);
 }
 
-function el(tag, attrs = {}, children = []) {
-  const node = document.createElement(tag);
-  Object.entries(attrs).forEach(([k, v]) => {
-    if (k === "class") node.className = v;
-    else if (k === "text") node.textContent = v;
-    else node.setAttribute(k, String(v));
-  });
-  children.forEach((c) => node.appendChild(c));
-  return node;
+async function fetchModules() {
+  try {
+    const response = await fetch(API_URL);
+    const data = await response.json();
+
+    if (data.success && Array.isArray(data.modules)) {
+      renderModulesGrid(data.modules);
+      renderModulesRail(data.modules);
+    } else {
+      console.log("Backend error:", data.message);
+    }
+  } catch (error) {
+    console.log("Fetch failed:", error);
+  }
 }
 
-function renderError(gridEl) {
-  gridEl.innerHTML = "";
-  gridEl.appendChild(
-    el("div", { class: "errorCard" }, [
-      el("h3", { class: "errorTitle", text: "Kunde inte hämta moduler" }),
-      el("p", { class: "errorText", text: "Starta backend och testa igen." }),
-    ])
-  );
+function getIconFileName(moduleName) {
+  const nameLower = String(moduleName || "").toLowerCase();
+
+  if (nameLower.includes("juridik")) return "juridik.svg";
+  if (nameLower.includes("privatekonomi")) return "privatekonomi.svg";
+  if (nameLower.includes("hushåll")) return "hus.svg";
+  if (nameLower.includes("mat")) return "food.svg";
+
+  return "lock.svg";
 }
 
-function renderModules(modules) {
-  const grid = document.getElementById("modulesGrid");
-  const rail = document.getElementById("modulesRail");
-  if (!grid || !rail) return;
+function renderModulesGrid(modules) {
+  if (!modulesGridElement) return;
 
-  grid.innerHTML = "";
-  rail.innerHTML = "";
+  modulesGridElement.innerHTML = "";
 
-  modules.forEach((m, idx) => {
-    const title = m?.name ?? `Modul ${idx + 1}`;
-    const desc = m?.description ?? "Beskrivning saknas";
-    const levelsDone = Number(m?.levelsDone ?? m?.completedLevels ?? (idx === 0 ? 2 : idx === 1 ? 1 : 0));
-    const totalLevels = Number(m?.totalLevels ?? m?.levelsTotal ?? 8);
-    const nextLevel = Number(m?.nextLevel ?? Math.min(totalLevels, Math.max(1, levelsDone + 1)));
-    const eta = m?.etaMin ?? (idx === 0 ? 4 : idx === 1 ? 6 : 5);
+  modules.forEach((m) => {
+    const iconPath = `images/${getIconFileName(m.name)}`;
 
-    const pct = totalLevels > 0 ? Math.max(0, Math.min(100, Math.round((levelsDone / totalLevels) * 100))) : 0;
+    const card = document.createElement("article");
+    card.className = "module-card";
 
-    const icon = iconForModule(title);
+    card.innerHTML = `
+      <div class="module-card__top">
+        <div class="module-card__icon-tile">
+          <img src="${iconPath}" alt="${m.name}">
+        </div>
+        <div>
+          <h3 class="module-card__title">${m.name}</h3>
+          <p class="module-card__desc">${m.description || ""}</p>
+        </div>
+      </div>
 
-    const card = el("article", { class: "moduleCard" }, [
-      el("div", { class: "cardTop" }, [
-        el("div", { class: "iconTile", style: `background:${icon.bg}` }, [
-          el("img", { src: icon.src, alt: "" }),
-        ]),
-        el("div", {}, [
-          el("h3", { class: "cardTitle", text: title }),
-          el("p", { class: "cardDesc", text: desc }),
-        ]),
-      ]),
+      <div class="progress-track">
+        <div class="progress-fill" style="width: 20%;"></div>
+      </div>
 
-      el("div", { class: "cardMeta" }, [
-        el("div", { class: "levelCount" }, [
-          el("strong", { text: `${levelsDone}/${totalLevels}` }),
-          el("span", { text: "nivåer" }),
-        ]),
-        el("div", { class: "progressTrack", role: "progressbar", "aria-valuemin": "0", "aria-valuemax": "100", "aria-valuenow": String(pct) }, [
-          el("div", { class: "progressFill", style: `width:${pct}%` }),
-        ]),
-      ]),
+      <button class="module-card__btn" type="button">Fortsätt kurs</button>
+    `;
 
-      el("div", { class: "cardBottom" }, [
-        el("div", { class: "nextLevel", text: `Nästa: Nivå ${nextLevel}` }),
-        el("div", { class: "pillSmall", text: `${eta} min` }),
-      ]),
-
-      el("button", { class: "cardBtn", type: "button" }, []),
-    ]);
-
-    card.querySelector(".cardBtn").textContent = "Öppna modul";
-    card.querySelector(".cardBtn").addEventListener("click", () => {
-      window.location.href = "./module-path.html";
+    const btn = card.querySelector(".module-card__btn");
+    btn.addEventListener("click", () => {
+      window.location.href = `quiz.html?id=${m.module_id}`;
     });
 
-    grid.appendChild(card);
-
-    const railItem = el("div", { class: "railItem" }, [
-      el("div", { class: "railIcon", style: `background:${icon.bg}` }, [
-        el("img", { src: icon.src, alt: "" }),
-      ]),
-      el("div", {}, [
-        el("div", { class: "railName", text: title }),
-        el("div", { class: "railDesc", text: desc.length > 34 ? desc.slice(0, 34) + "…" : desc }),
-      ]),
-      el("div", { class: "railMeta", text: `${levelsDone}/${totalLevels}` }),
-    ]);
-
-    rail.appendChild(railItem);
+    modulesGridElement.appendChild(card);
   });
 }
 
-async function init() {
-  const grid = document.getElementById("modulesGrid");
-  if (!grid) return;
+function renderModulesRail(modules) {
+  if (!modulesRailElement) return;
 
-  try {
-    const res = await fetch(API_URL, { headers: { Accept: "application/json" } });
-    if (!res.ok) throw new Error("Bad response");
+  modulesRailElement.innerHTML = "";
 
-    const data = await res.json();
+  modules.forEach((m) => {
+    const iconPath = `images/${getIconFileName(m.name)}`;
 
-    const modules = Array.isArray(data) ? data : Array.isArray(data?.modules) ? data.modules : [];
-    if (!modules.length) throw new Error("Empty modules");
+    const railItem = document.createElement("div");
+    railItem.className = "card moditem";
+    railItem.style.cursor = "pointer";
 
-    renderModules(modules);
-  } catch (_) {
-    renderError(grid);
-    const rail = document.getElementById("modulesRail");
-    if (rail) rail.innerHTML = "";
-  }
+    railItem.innerHTML = `
+      <div class="moditem__left">
+        <div class="moditem__icon">
+          <img src="${iconPath}" alt="${m.name}">
+        </div>
+        <div class="moditem__text">
+          <div class="moditem__name">${m.name}</div>
+          <div class="moditem__sub">${m.description || ""}</div>
+        </div>
+      </div>
+      <div class="moditem__right">›</div>
+    `;
+
+    railItem.addEventListener("click", () => {
+      window.location.href = `quiz.html?id=${m.module_id}`;
+    });
+
+    modulesRailElement.appendChild(railItem);
+  });
 }
 
-window.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", () => {
+  // Demo (replace when backend user endpoint exists)
+  updatePageUI({
+    firstName: "Oskar",
+    userName: "Oskar O.",
+    userMeta: "Nivå 4 • Grundare",
+    streakText: "2 dagar i rad",
+    totalPoints: 420,
+    level: 4,
+  });
+
+  fetchModules();
+});
