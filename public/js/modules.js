@@ -16,7 +16,8 @@ function updatePageUI(data) {
   if (userMetaElement) userMetaElement.textContent = data.userMeta || "—";
   if (streakElement) streakElement.textContent = data.streakText || "—";
 
-  if (totalPointsElement) totalPointsElement.textContent = String(data.totalPoints || 0);
+  if (totalPointsElement)
+    totalPointsElement.textContent = String(data.totalPoints || 0);
   if (levelElement) levelElement.textContent = String(data.level || 0);
 }
 
@@ -78,7 +79,7 @@ function renderModulesGrid(modules) {
 
     const btn = card.querySelector(".module-card__btn");
     btn.addEventListener("click", () => {
-      window.location.href = `quiz.html?id=${m.module_id}`;
+      window.location.href = `module-path.html?id=${m.module_id}`;
     });
 
     modulesGridElement.appendChild(card);
@@ -111,7 +112,7 @@ function renderModulesRail(modules) {
     `;
 
     railItem.addEventListener("click", () => {
-      window.location.href = `quiz.html?id=${m.module_id}`;
+      window.location.href = `module-path.html?id=${m.module_id}`;
     });
 
     modulesRailElement.appendChild(railItem);

@@ -1,5 +1,4 @@
 import { connectDB } from "../config/sql.js";
-import type { RequestHandler } from "express";
 import type { Request, Response } from "express";
 
 
@@ -9,13 +8,24 @@ export async function getQuestions(req: Request, res: Response) {
 
     const db = await connectDB();
 
-    const [questions] = await db.execute(
-      `SELECT m.name AS module, ml.level_number, quiz_questions_id, quiz_question, correct_option
+    const moduleId = req.query.module_id;
+    const level = req.query.level;
+
+    let sql = `SELECT m.name AS module, ml.level_number, ml.module_level_id, quiz_questions_id, quiz_question, correct_option
 FROM quiz_questions qq
 INNER JOIN modules m on qq.module_id = m.module_id
-INNER JOIN module_levels ml on qq.module_level_id = ml.module_level_id
-ORDER BY quiz_questions_id ASC;`
-    );
+INNER JOIN module_levels ml on qq.module_level_id = ml.module_level_id`;
+
+    const queryParams: any[] = [];
+
+    if (moduleId && level) {
+      sql += ` WHERE m.module_id = ? AND ml.level_number = ?`;
+      queryParams.push(moduleId, level);
+    }
+
+    sql += ` ORDER BY quiz_questions_id ASC`;
+
+    const [questions] = await db.execute(sql, queryParams);
 
     return res.status(200).json({
       success: true,

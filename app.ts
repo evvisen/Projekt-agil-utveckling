@@ -30,6 +30,8 @@ app.use("/api", modulesRoutes)
 import questionRoutes from './routes/questionsRoutes.js'
 app.use("/api", questionRoutes)
 
+import progressRoutes from './routes/progressRoutes.js'
+app.use("/api", progressRoutes)
 
 async function startServer() {
   const db = await connectDB();
