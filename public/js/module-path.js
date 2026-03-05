@@ -26,10 +26,10 @@ function createLevelNode(level, moduleId) {
   link.classList.add("level", "levellink");
 
   const node = document.createElement("div");
-  node.classlist.add("node");
+  node.classList.add("node");
 
   const label = document.createElement("div");
-  label.classlist.add("label");
+  label.classList.add("label");
   label.textContent = `Nivå ${level.level_number}`;
 
   if (level.status === "locked") {
@@ -69,7 +69,7 @@ function createLevelNode(level, moduleId) {
 
 async function renderModulePath() {
   const params = new URLSearchParams(window.location.search);
-  const moduleId = params.get("module_id");
+  const moduleId = params.get("id");
 
   const userId = getUserIdFromToken();
   if (!userId || !moduleId) return;

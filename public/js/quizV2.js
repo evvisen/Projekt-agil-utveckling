@@ -71,17 +71,21 @@ buttonValue.forEach(buttonValue => {
   })
 })
 
+const urlParams = new URLSearchParams(window.location.search);
+const moduleId = urlParams.get("module_id");
+const levelNumber = urlParams.get("level");
+
+function getUserIdFromToken() {
+  const token = localStorage.getItem("token");
+  if (!token) return null;
+  const payload = JSON.parse(atob(token.split(".")[1]));
+  return payload.user_id;
+}
+
 async function getQuestions() {
-  const response = await fetch("http://localhost:3000/api/questions");
+  const response = await fetch(`/api/questions?module_id=${moduleId}&level=${levelNumber}`);
   const result = await response.json();
-
-  //filtrera modul och nivå tillfälligt
-  const filtered = result.questions.filter(
-    (question) => question.module === "Juridik" && question.level_number === 1
-  );
-
-  console.log(filtered);
-  return filtered;
+  return result.questions;
 }
 
 let currentIndex = 0;
@@ -90,7 +94,7 @@ let questions = [];
 async function startQuiz() {
   questions = await getQuestions();
 
-  document.getElementById("quizTitle").textContent = "Juridik Nivå 1";
+  document.getElementById("quizTitle").textContent = `${questions[0].module} Nivå ${levelNumber}`;
   document.getElementById("qTotal").textContent = String(questions.length);
 
   renderQuestion();
@@ -123,7 +127,38 @@ function goNext() {
       allAnswerbuttons.classList.remove("is-wrong");
       allAnswerbuttons.classList.remove("is-correct");
     })
+  } else {
+    completeLevel();
   }
+}
+
+async function completeLevel() {
+  const userId = getUserIdFromToken();
+  if (!userId || !questions.length) return;
+
+  const moduleLevelId = questions[0].module_level_id;
+
+  try {
+    await fetch("/api/progress", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: userId,
+        module_level_id: moduleLevelId,
+      }),
+    });
+  } catch (err) {
+    console.error("Kunde inte uppdatera progress:", err);
+  }
+
+  document.getElementById("questionText").textContent = "Quiz klart! Bra jobbat!";
+  document.querySelector(".answers").style.display = "none";
+  document.getElementById("nextBtn").textContent = "Tillbaka";
+  document.getElementById("nextBtn").disabled = false;
+  document.getElementById("nextBtn").removeEventListener("click", goNext);
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    window.location.href = `module-path.html?id=${moduleId}`;
+  });
 }
 
 startQuiz();
