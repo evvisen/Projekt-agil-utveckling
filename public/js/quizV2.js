@@ -4,6 +4,8 @@ console.log(answerText[0]);
 const buttonValue = document.querySelectorAll(".answerBtn")
 const allAnswerbuttons = document.querySelectorAll(".answerBtn");
 
+let correctAnswers = 0;
+
 async function svarsalternativ(params) {
   await fetch("http://localhost:3000/api/juridikquiz")
     .then((response) => response.json())
@@ -48,7 +50,7 @@ async function svarsalternativ(params) {
 }
 
 //Gör två element inne i knappen där ena representerar badgen och den andra texten.
-// Använd slice() för att ta bort bokstäverna från svarsalternativen 
+// Använd slice() för att ta bort bokstäverna från svarsalternativen
 
 svarsalternativ();
 
@@ -60,6 +62,9 @@ buttonValue.forEach(buttonValue => {
       allAnswerbuttons.forEach(allAnswerbuttons => {
         allAnswerbuttons.disabled = true;
       })
+      correctAnswers += 1;
+      console.log(correctAnswers);
+
     }
     if (buttonValue.getAttribute("value") === "false") {
       console.log("Du har fel");
@@ -99,6 +104,7 @@ async function startQuiz() {
 
   renderQuestion();
   document.getElementById("nextBtn").addEventListener("click", goNext);
+  correctAnswers = 0;
 }
 
 function renderQuestion() {
@@ -133,32 +139,44 @@ function goNext() {
 }
 
 async function completeLevel() {
-  const userId = getUserIdFromToken();
-  if (!userId || !questions.length) return;
+  if (correctAnswers === 3) {
+    const userId = getUserIdFromToken();
+    if (!userId || !questions.length) return;
 
-  const moduleLevelId = questions[0].module_level_id;
+    const moduleLevelId = questions[0].module_level_id;
 
-  try {
-    await fetch("/api/progress", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        user_id: userId,
-        module_level_id: moduleLevelId,
-      }),
+    try {
+      await fetch("/api/progress", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: userId,
+          module_level_id: moduleLevelId,
+        }),
+      });
+    } catch (err) {
+      console.error("Kunde inte uppdatera progress:", err);
+    }
+
+    document.getElementById("questionText").textContent = "Quiz klart! Bra jobbat!";
+    document.querySelector(".answers").style.display = "none";
+    document.getElementById("nextBtn").textContent = "Tillbaka";
+    document.getElementById("nextBtn").disabled = false;
+    document.getElementById("nextBtn").removeEventListener("click", goNext);
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      window.location.href = `module-path.html?id=${moduleId}`;
     });
-  } catch (err) {
-    console.error("Kunde inte uppdatera progress:", err);
   }
-
-  document.getElementById("questionText").textContent = "Quiz klart! Bra jobbat!";
-  document.querySelector(".answers").style.display = "none";
-  document.getElementById("nextBtn").textContent = "Tillbaka";
-  document.getElementById("nextBtn").disabled = false;
-  document.getElementById("nextBtn").removeEventListener("click", goNext);
-  document.getElementById("nextBtn").addEventListener("click", () => {
-    window.location.href = `module-path.html?id=${moduleId}`;
-  });
+  if (correctAnswers < 3) {
+    document.getElementById("questionText").textContent = "Du behöver göra om";
+    document.querySelector(".answers").style.display = "none";
+    document.getElementById("nextBtn").textContent = "Tillbaka";
+    document.getElementById("nextBtn").disabled = false;
+    document.getElementById("nextBtn").removeEventListener("click", goNext);
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      window.location.href = `module-path.html?id=${moduleId}`;
+    });
+  }
 }
 
 startQuiz();
