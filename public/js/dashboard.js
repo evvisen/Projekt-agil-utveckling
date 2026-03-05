@@ -1,3 +1,5 @@
+const { type } = require("node:os");
+
 const API_URL = "http://localhost:3000/api/modules";
 
 const userNameElement = document.querySelector("[data-user-name]");
@@ -108,4 +110,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   fetchModules();
+
+
 });
+
+
