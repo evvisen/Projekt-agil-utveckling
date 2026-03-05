@@ -128,6 +128,10 @@
                   </div>
                 </div>
               </div>
+
+
+
+
             </div>
           </div>
 
@@ -147,6 +151,7 @@
                 <span class="tag tag--done">Avklarad</span>
               </div>
 
+
               <div class="step is-active">
                 <div class="step__dot">2</div>
                 <div class="step__content">
@@ -157,35 +162,40 @@
                   </div>
                 </div>
                 <span class="tag tag--start">Starta</span>
-              </div>
 
-              <div class="step is-locked">
-                <img class="time__icon" src="images/lock.svg" alt="" />
-                <div class="step__content">
-                  <div class="step__kicker">NIVÅ 3: AVTAL</div>
-                  <div class="step__name">Skriva kontrakt</div>
+
+
+
+
+
+
+                <div class="step is-locked">
+                  <img class="time__icon" src="images/lock.svg" alt="" />
+                  <div class="step__content">
+                    <div class="step__kicker">NIVÅ 3: AVTAL</div>
+                    <div class="step__name">Skriva kontrakt</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="card journey">
-            <div class="journey__head">
-              <h3 class="journey__title">Din Resa: Privatekonomi</h3>
-              <div class="journey__meta">1 av 5 nivåer klara</div>
-            </div>
+            <div class="card journey">
+              <div class="journey__head">
+                <h3 class="journey__title">Din Resa: Privatekonomi</h3>
+                <div class="journey__meta">1 av 5 nivåer klara</div>
+              </div>
 
-            <div class="steps">
-              <div class="step is-done">
-                <div class="step__dot">✓</div>
-                <div class="step__content">
-                  <div class="step__kicker">NIVÅ 1: GRUNDER</div>
-                  <div class="step__name">Rättigheter och Skyldigheter</div>
+              <div class="steps">
+                <div class="step is-done">
+                  <div class="step__dot">✓</div>
+                  <div class="step__content">
+                    <div class="step__kicker">NIVÅ 1: GRUNDER</div>
+                    <div class="step__name">Rättigheter och Skyldigheter</div>
+                  </div>
+                  <span class="tag tag--done">Avklarad</span>
                 </div>
-                <span class="tag tag--done">Avklarad</span>
               </div>
             </div>
-          </div>
         </section>
 
         <aside class="right">
@@ -225,6 +235,29 @@
             </div>
           </div>
 
+          <!-- ny -->
+          <div class="card progress-card">
+            <div class="progress-card-head">
+              <div class="progress-card-title">Progress per modul</div>
+            </div>
+
+
+            <div class="progress-card-grid">
+              <div class="progress-chart">
+                <div class="progress-chart-title">Juridik</div>
+                <canvas id="chartJuridik" width="130" height="130"></canvas>
+                <div class="progress-chart-text" id="textJuridik">-</div>
+              </div>
+
+              <div class="progress-chart">
+                <div class="progress-chart-title">Privatekonomi</div>
+                <canvas id="chartPrivatekonomi" width="130" height="140"></canvas>
+                <div class="progress-chart-text" id="textPrivatekonomi">-</div>
+              </div>
+            </div>
+          </div>
+
+
           <div class="mods">
             <div class="mods__title">ALLA MODULER</div>
             <div id="modulesRail"></div>
@@ -250,7 +283,11 @@
 
   </div>
 
+
   <script type="module" src="js/dashboard.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module" src="js/charts.js"></script>
 </body>
 
 </html>

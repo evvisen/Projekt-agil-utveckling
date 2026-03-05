@@ -849,4 +849,58 @@ img {
   .moditem.is-disabled {
     opacity: .7;
   }
+
+
+  /* ny */
+  .progress-card {
+    padding: 16px;
+    border-radius: var(--r24);
+    margin-bottom: 12px;
+  }
+
+  .progress-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .progress-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 28px;
+  }
+
+
+  .progress-card-grid {
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .progress-chart {
+    border: 1px solid #EEF2F7;
+    background: #FBFCFF;
+    border-radius: 16px;
+    padding: 12px;
+    display: grid;
+    gap: 8px;
+    justify-content: center;
+
+  }
+
+
+
+  .progress-chart-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  .progress-chart-text {
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748B;
+  }
+
 }
