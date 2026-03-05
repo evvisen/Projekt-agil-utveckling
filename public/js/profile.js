@@ -7,11 +7,14 @@ const streakElement = document.querySelector("[data-streak]");
 const totalPointsElement = document.querySelector("[data-total-points]");
 const levelElement = document.querySelector("[data-level]");
 
-const timeLeftElement = document.querySelector("[data-time-left]");
-const progressTextElement = document.querySelector("[data-progress]");
-const progressRingElement = document.querySelector("[data-progress-ring]");
+const profileFullnameElement = document.querySelector("[data-profile-fullname]");
+const profileEmailElement = document.querySelector("[data-profile-email]");
 
 const modulesRailElement = document.getElementById("modulesRail");
+
+const toggleNotiserButton = document.getElementById("toggleNotiser");
+const toggleLjudButton = document.getElementById("toggleLjud");
+const logoutLink = document.getElementById("logoutLink");
 
 function updatePageUI(data) {
   if (firstNameElement) firstNameElement.textContent = data.firstName || "—";
@@ -22,15 +25,8 @@ function updatePageUI(data) {
   if (totalPointsElement) totalPointsElement.textContent = String(data.totalPoints || 0);
   if (levelElement) levelElement.textContent = String(data.level || 0);
 
-  if (timeLeftElement) timeLeftElement.textContent = data.timeLeft || "—";
-
-  const progressPercent = Number(data.progress || 0);
-  if (progressTextElement) progressTextElement.textContent = progressPercent + "%";
-
-  if (progressRingElement) {
-    progressRingElement.style.background =
-      `conic-gradient(var(--purple) 0 ${progressPercent}%, #E5E7EB ${progressPercent}% 100%)`;
-  }
+  if (profileFullnameElement) profileFullnameElement.textContent = data.fullName || "—";
+  if (profileEmailElement) profileEmailElement.textContent = data.email || "—";
 }
 
 async function fetchModules() {
@@ -94,8 +90,47 @@ function renderModulesRail(modules) {
   });
 }
 
+function loadSettings() {
+  const notiser = localStorage.getItem("settings:notiser");
+  const ljud = localStorage.getItem("settings:ljud");
+
+  if (toggleNotiserButton) {
+    if (notiser === "1") toggleNotiserButton.classList.add("is-on");
+    if (notiser === "0") toggleNotiserButton.classList.remove("is-on");
+  }
+
+  if (toggleLjudButton) {
+    if (ljud === "1") toggleLjudButton.classList.add("is-on");
+    if (ljud === "0") toggleLjudButton.classList.remove("is-on");
+  }
+}
+
+function bindSettings() {
+  if (toggleNotiserButton) {
+    toggleNotiserButton.addEventListener("click", () => {
+      const isOn = toggleNotiserButton.classList.toggle("is-on");
+      localStorage.setItem("settings:notiser", isOn ? "1" : "0");
+    });
+  }
+
+  if (toggleLjudButton) {
+    toggleLjudButton.addEventListener("click", () => {
+      const isOn = toggleLjudButton.classList.toggle("is-on");
+      localStorage.setItem("settings:ljud", isOn ? "1" : "0");
+    });
+  }
+
+  if (logoutLink) {
+    logoutLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.removeItem("token");
+      window.location.href = "login.html";
+    });
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  // Demo (replace when backend user endpoint exists)
+    // Demo (replace when backend user endpoint exists)
   updatePageUI({
     firstName: "Oskar",
     userName: "Oskar O.",
@@ -103,9 +138,11 @@ document.addEventListener("DOMContentLoaded", () => {
     streakText: "3 dagar i rad",
     totalPoints: 420,
     level: 4,
-    timeLeft: "4 min kvar",
-    progress: 65,
+    fullName: "Oskar Oskarsson",
+    email: "oskar.oskarsson@gmail.se",
   });
 
+  loadSettings();
+  bindSettings();
   fetchModules();
 });

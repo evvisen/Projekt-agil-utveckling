@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moduler – Vuxenpoäng</title>
+  <title>Profil – Vuxenpoäng</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/modules.css" />
+  <link rel="stylesheet" href="css/profile.css" />
 </head>
 
 <body>
@@ -27,8 +27,8 @@
           <span class="nav__label">Översikt</span>
         </a>
 
-        <a class="nav__item is-active" href="modules.html" aria-current="page">
-          <span class="nav__icon"><img src="images/moduler-active.svg" alt="" /></span>
+        <a class="nav__item" href="modules.html">
+          <span class="nav__icon"><img src="images/moduler.svg" alt="" /></span>
           <span class="nav__label">Moduler</span>
         </a>
 
@@ -44,13 +44,13 @@
       </nav>
 
       <div class="sidebar__footer">
-        <div class="user">
+        <a class="user user--link" href="profile.html" aria-current="page">
           <img class="user__img" src="images/profile-pic.png" alt="Profilbild" />
           <div class="user__text">
             <div class="user__name" data-user-name>Oskar O.</div>
             <div class="user__meta" data-user-meta>Nivå 4 • Grundare</div>
           </div>
-        </div>
+        </a>
       </div>
     </aside>
 
@@ -63,7 +63,7 @@
         <div class="breadcrumbs" aria-label="Brödsmulor">
           <span class="breadcrumbs__muted">Hem</span>
           <span class="breadcrumbs__sep">›</span>
-          <span class="breadcrumbs__current">Moduler</span>
+          <span class="breadcrumbs__current">Profil</span>
         </div>
       </div>
 
@@ -85,30 +85,90 @@
 
     <main class="content">
       <div class="grid">
+
         <section class="main">
           <div class="page-head">
-            <h1 class="page-title">Hej, <span data-first-name>Oskar</span>! <span class="wave">👋</span></h1>
-            <p class="page-sub">Välj en modul för att fortsätta.</p>
+            <h1 class="page-title">Profil</h1>
+            <p class="page-sub">Hantera konto och inställningar.</p>
           </div>
 
-          <section class="modules">
-            <div id="modulesGrid" class="modules__grid" aria-label="Moduler"></div>
-
-            <button class="load-more" type="button" id="loadMoreBtn">
-              Laddar fler <span class="load-more__icon" aria-hidden="true">↓</span>
-            </button>
-
-            <div class="coming-soon" aria-label="Kommer snart">
-              <div class="coming-soon__title">Kommer Snart</div>
-              <div class="coming-soon__card">
-                <img class="lock__icon" src="images/lock.svg" alt="Hänglos" />
-
-                <div>
-                  <div class="coming-soon__name">Jobb och Lön</div>
-                  <div class="coming-soon__desc">Allt som händer när man får jobb</div>
-                </div>
-              </div>
+          <section class="card profile-main" aria-label="Profilkort">
+            <div class="profile-center">
+              <img class="profile-avatar" src="images/profile-pic.png" alt="Profilbild" />
+              <div class="profile-name" data-profile-fullname>Oskar Oskarsson</div>
+              <div class="profile-email" data-profile-email>oskar.oskarsson@gmail.se</div>
+              <a class="profile-edit" href="#" role="button">Redigera profil</a>
             </div>
+          </section>
+
+          <div class="section-title">KONTO</div>
+          <section class="card list-card" aria-label="Konto">
+            <a class="row-item" href="#">
+              <span class="row-left">
+                <img class="row-icon" src="images/lösenord.svg" alt="" />
+                <span class="row-text">Byt lösenord</span>
+              </span>
+              <span class="row-chevron" aria-hidden="true">›</span>
+            </a>
+
+            <div class="row-divider" aria-hidden="true"></div>
+
+            <a class="row-item" href="#" id="logoutLink">
+              <span class="row-left">
+                <img class="row-icon" src="images/logout.svg" alt="" />
+                <span class="row-text">Logga ut</span>
+              </span>
+              <span class="row-chevron" aria-hidden="true">›</span>
+            </a>
+          </section>
+
+          <div class="section-title">INSTÄLLNINGAR</div>
+          <section class="card list-card" aria-label="Inställningar">
+            <div class="row-item row-item--switch">
+              <span class="row-left">
+                <img class="row-icon" src="images/notiser.svg" alt="" />
+                <span class="row-text">Notiser</span>
+              </span>
+              <button class="switch" type="button" id="toggleNotiser" aria-label="Notiser på/av">
+                <span class="switch-knob" aria-hidden="true"></span>
+              </button>
+            </div>
+
+            <div class="row-divider" aria-hidden="true"></div>
+
+            <div class="row-item row-item--switch">
+              <span class="row-left">
+                <img class="row-icon" src="images/ljud.svg" alt="" />
+                <span class="row-text">Ljud i quiz</span>
+              </span>
+              <button class="switch" type="button" id="toggleLjud" aria-label="Ljud i quiz på/av">
+                <span class="switch-knob" aria-hidden="true"></span>
+              </button>
+            </div>
+
+            <div class="row-divider" aria-hidden="true"></div>
+
+            <a class="row-item" href="#">
+              <span class="row-left">
+                <img class="row-icon" src="images/språk.svg" alt="" />
+                <span class="row-text-wrap">
+                  <span class="row-text">Språk</span>
+                  <span class="row-sub">Svenska</span>
+                </span>
+              </span>
+              <span class="row-chevron" aria-hidden="true">›</span>
+            </a>
+          </section>
+
+          <div class="section-title">DATA OCH SEKRETESS</div>
+          <section class="card list-card" aria-label="Data och sekretess">
+            <a class="row-item row-item--danger" href="#">
+              <span class="row-left">
+                <img class="row-icon" src="images/radera.svg" alt="" />
+                <span class="row-text">Radera konto</span>
+              </span>
+              <span class="row-chevron danger" aria-hidden="true">›</span>
+            </a>
           </section>
         </section>
 
@@ -121,9 +181,7 @@
 
             <div class="card stat">
               <div class="stat__label">NIVÅ</div>
-              <div class="stat__value">
-                <span data-level>4</span> <span class="stat__small">/10</span>
-              </div>
+              <div class="stat__value"><span data-level>4</span> <span class="stat__small">/10</span></div>
             </div>
           </div>
 
@@ -155,6 +213,7 @@
             <div id="modulesRail"></div>
           </div>
         </aside>
+
       </div>
     </main>
 
@@ -164,8 +223,8 @@
         <span class="nav__label">Hem</span>
       </a>
 
-      <a class="nav__item is-active" href="modules.html" aria-current="page">
-        <span class="nav__icon"><img src="images/moduler-active.svg" alt="" /></span>
+      <a class="nav__item" href="modules.html">
+        <span class="nav__icon"><img src="images/moduler.svg" alt="" /></span>
         <span class="nav__label">Moduler</span>
       </a>
 
@@ -177,7 +236,7 @@
 
   </div>
 
-  <script type="module" src="js/modules.js"></script>
+  <script type="module" src="js/profile.js"></script>
 </body>
 
 </html>
